@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <title>HuobiNFT</title>
+  </head>
+  <script>
+    (function (win, doc, mode) {
+      if (/(iPhone|iPad|iPod|iOS|Android|Windows Phone|BlackBerry|SymbianOS)/i.test(navigator.userAgent)) {
+        var meta = document.createElement('meta')
+        meta.content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no'
+        meta.name='viewport'
+        document.getElementsByTagName('head')[0].appendChild(meta)
+      } else {
+        var meta = document.createElement('meta')
+        meta.content='width=device-width, initial-scale=1'
+        meta.name='viewport'
+        document.getElementsByTagName('head')[0].appendChild(meta)
+      }
+    })(window, document, 'px')
+  </script> 
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
