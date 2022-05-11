@@ -23,14 +23,14 @@ export const RewardModalContent = styled.div`
     left: 6rem;
     z-index: 1;
     height: 29.5rem;
-    border-radius: 1.56rem;
+    border-radius: 2rem;
     box-shadow: 0 0.19rem 0.38rem -0.25rem rgba(0, 0, 0, 0.12), 0 0.38rem 1rem 0 rgba(0, 0, 0, 0.08),
       0 0.56rem 1.75rem 0.5rem rgba(0, 0, 0, 0.05);
   }
   .Reward-image {
     width: 100%;
     height: 100%;
-    border-radius: 1.56rem;
+    border-radius: 2rem;
   }
   h5 {
     font-size: 1.75rem;
@@ -42,12 +42,10 @@ export const RewardModalContent = styled.div`
   .reward-btn {
     min-width: 31.25rem;
     height: 5.63rem;
-    background: #5927ef;
     border-radius: 2.81rem;
     font-size: 1.63rem;
     font-family: 'PingFang-SC-Semibold';
     font-weight: 600;
-    color: ${(props) => props.theme.white};
     margin-top: 3.75rem;
     margin-bottom: 5.63rem;
   }

@@ -10,6 +10,7 @@ import {
   WalletLoginOutMask,
   NoCopyTips,
 } from './styled'
+import { WalletOutlined } from '@ant-design/icons'
 import { Button, Image, Row, Col, message, Drawer, Spin } from 'antd'
 import { Web3Provider } from '@ethersproject/providers'
 import { useWeb3React } from '@web3-react/core'
@@ -19,7 +20,7 @@ import { SetActivaing } from '@/store/connector/action'
 import { connectorsByName, defaultChainId, getActiveChainId, RPC_URLS } from '@/contracts/constant'
 import { useTranslation } from 'react-i18next'
 // formatStrAddress,
-import { Adapth5 } from '@/utils'
+import { Adapth5, formatStrAddress } from '@/utils'
 import { netWorks } from '@/contracts/constant'
 // SaveNetwork
 import { SaveIsLogin, SaveWallet } from '@/store/wallet/action'
@@ -33,10 +34,16 @@ import TopBar from '@/components/TopBar'
 const HeadingBase =
   'data:image/png;base64,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'
 
-export default memo(function ConnectWalletPage(props) {
+interface Type {
+  status?: string
+}
+
+export default memo(function ConnectWalletPage(props: Type) {
   // @ts-ignore
   const { ethereum } = window
   const { REACT_APP_ENV = 'prd' } = process.env
+
+  const { status = '' } = props
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -252,7 +259,9 @@ export default memo(function ConnectWalletPage(props) {
             onMouseLeave={() => setIsLogoutShow(false)}
           >
             <Image src={HeadingBase} preview={false}></Image>
-            {/* <span style={{ marginLeft: '0.75rem' }}>{formatStrAddress(6, 4, myAddress)}</span> */}
+            {windowSize.innerWidth >= Adapth5 && REACT_APP_ENV === 'dev' && (
+              <span style={{ marginLeft: '0.75rem' }}>{formatStrAddress(6, 4, myAddress)}</span>
+            )}
             <div style={{ display: isLogoutShow ? 'block' : 'none' }}>
               <WalletLoginOutModal onClick={() => loginOut()}>{t('app.link.logout')}</WalletLoginOutModal>
             </div>
@@ -260,7 +269,39 @@ export default memo(function ConnectWalletPage(props) {
           <WalletLoginOutMask style={{ display: isLogoutShow ? 'block' : 'none' }}></WalletLoginOutMask>
         </>
       )}
-      {!active && (
+      {!active && status === 'topbar' && windowSize.innerWidth >= Adapth5 && (
+        <Button
+          size="large"
+          type="primary"
+          className="wallet-login-btn"
+          onClick={() => {
+            if (!ethereum && windowSize.innerWidth < Adapth5) {
+              copy()
+              return false
+            }
+            setOnShow(true)
+          }}
+        >
+          {t('app.link.btn')}
+        </Button>
+      )}
+      {!active && status === 'topbar' && windowSize.innerWidth < Adapth5 && (
+        <Button
+          size="large"
+          type="primary"
+          shape="circle"
+          className="wallet-login-icon-h51"
+          icon={<WalletOutlined />}
+          onClick={() => {
+            if (!ethereum && windowSize.innerWidth < Adapth5) {
+              copy()
+              return false
+            }
+            setOnShow(true)
+          }}
+        ></Button>
+      )}
+      {!active && status === '' && (
         <Button
           size="large"
           type="primary"
@@ -316,7 +357,7 @@ export default memo(function ConnectWalletPage(props) {
           </Row>
         </Spin>
       </Drawer>
-      {!isNetWork && !active && ethereum && ethereum.isMetaMask && REACT_APP_ENV !== 'dev' && (
+      {!isNetWork && !active && ethereum && ethereum.isMetaMask && (
         <NoChainIdTips onClick={() => switchNetWorkChange()}>
           <span>{t('app.no.chainid.tips')}</span>
           <Button className="no-network-btns">{t('app.no.chainid.btn')}</Button>

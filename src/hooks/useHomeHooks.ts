@@ -6,8 +6,8 @@ import REWARD_DEFAULT_IMAGE from '@/assets/reward-default.png'
 export const useHomeHooks = () => {
   const [auctionList, setAuctionList] = useState<AuctionListType[]>([])
   const [rewardList, setRewardList] = useState<RewardListType[]>([])
-  const [isAuction] = useState<boolean>(true)
-  const [isAuctionSuccess] = useState<boolean>(true)
+  const [isAuction] = useState<boolean>(false)
+  const [isAuctionSuccess] = useState<boolean>(false)
 
   useEffect(() => {
     getAuctionList()
@@ -22,10 +22,10 @@ export const useHomeHooks = () => {
         list.push({
           iamge: AUCTION_DEFAULT_IMAGE,
           name: 'McGrady Moment',
-          price: '15400000000000000000000',
+          price: '3500000000000000000000',
           edition: '1',
-          startTime: '2022/04/30',
-          endTime: '2022/05/30',
+          startTime: '2022/05/25 10:00:00',
+          endTime: '2022/05/26 21:00:00',
           key: i.toString(),
         })
       }

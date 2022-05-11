@@ -15,7 +15,7 @@ export const AuctionWrapper = styled(ComLayout)`
     position: absolute;
   }
   .table_tbody_box {
-    height: calc(5 * 6.19rem);
+    height: calc(1 * 6.19rem);
     overflow: scroll;
   }
 `
@@ -169,7 +169,7 @@ export const AuctionData = styled.div`
       min-width: 8.88rem;
       height: 3.13rem;
       background: rgba(96, 35, 249, 0.1);
-      border-radius: 1.56rem;
+      border-radius: 2rem;
       line-height: 3.13rem;
       text-align: center;
       margin-top: 0.63rem;
@@ -205,7 +205,6 @@ export const AuctionBtn = styled.div`
   .ant-btn {
     min-width: 31.25rem;
     height: 5.63rem;
-    background: ${(props) => props.theme.themeColor};
     border-radius: 2.81rem;
     font-size: 1.63rem;
     font-family: 'PingFang-SC-Semibold';
@@ -227,7 +226,7 @@ export const AuctionBtn = styled.div`
 
 export const OffersListDiv = styled.div`
   width: 100%;
-  height: 45.63rem;
+  height: calc(6.19rem * 3);
   background: #ffffff;
   box-shadow: 0rem 1.94rem 1.88rem 0rem rgba(146, 159, 198, 0.1);
   border-radius: 1.88rem;
@@ -257,7 +256,7 @@ export const OffersTables = styled.div`
   }
   tbody {
     display: block;
-    height: calc(5 * 6.19rem);
+    height: calc(1 * 6.19rem);
     overflow-y: scroll;
     tr {
       height: 6.19rem;
@@ -432,7 +431,6 @@ export const ModalContent = styled.div`
   .submit-btn {
     width: 100%;
     height: 5rem;
-    background: #5927ef;
     border-radius: 2.5rem;
     font-size: 1.5rem;
     font-family: 'PingFang-SC-Semibold';

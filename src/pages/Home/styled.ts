@@ -34,12 +34,10 @@ export const HomeWrapper = styled.div`
     .reward-btn {
       min-width: 31.25rem;
       height: 5.63rem;
-      background: #5927ef;
       border-radius: 2.81rem;
       font-size: 1.63rem;
       font-family: 'PingFang-SC-Semibold';
       font-weight: 600;
-      color: ${(props) => props.theme.white};
       margin-top: 3.75rem;
       margin-bottom: 5.63rem;
     }
@@ -84,7 +82,7 @@ export const HomeBanner = styled(ComLayout)`
     font-size: 1.5rem;
     font-family: 'Avenir';
     font-weight: 500;
-    color: ${(props) => props.theme.white}32;
+    color: rgba(255,255,255,0.5);
     line-height: 2.25rem;
   }
   ${(props) =>
@@ -109,7 +107,6 @@ export const HomeBanner = styled(ComLayout)`
 export const BannerData = styled.div`
   margin-top: 5.75rem;
   height: 7.69rem;
-  opacity: 0.62;
   position: relative;
   display: flex;
   align-items: center;
@@ -138,7 +135,7 @@ export const BannerData = styled.div`
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
       overflow: hidden;
-      color: ${(props) => props.theme.white}32;
+      color: rgba(255,255,255,0.5);
       line-height: 1.56rem;
     }
     h4 {
@@ -178,15 +175,15 @@ export const HomeAbout = styled(ComLayout)`
     font-family: 'Avenir';
     font-weight: 900;
     color: ${(props) => props.theme.white};
-    line-height: 4rem;
-    margin-bottom: 1.56rem;
+    line-height: 2rem;
   }
   p {
     font-size: 1.5rem;
     font-family: 'Avenir';
     font-weight: 500;
-    color: ${(props) => props.theme.white}28;
-    line-height: 2.13rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.98rem;
+    margin-bottom: 0.63rem;
   }
 `
 
@@ -214,7 +211,8 @@ export const HomeAboutIcon = styled(Row)`
       () => css`
         .ant-image,
         .ant-image-img {
-          height: 5.13rem;
+          height: 4.13rem;
+          width: auto;
         }
         .ant-col {
           display: flex;
@@ -238,6 +236,11 @@ export const HomeAuction = styled(ComLayout)`
   width: 100%;
   min-height: 57.5rem;
   background: ${(props) => props.theme.bgColor2};
+  margin-bottom: -8.75rem;
+  .h22 {
+    height: 8.75rem;
+    margin-bottom: 0;
+  }
 `
 
 export const AuctionTitle = styled.div`
@@ -246,7 +249,7 @@ export const AuctionTitle = styled.div`
   font-weight: 900;
   color: #ffffff;
   line-height: 6rem;
-  top: -18.13rem;
+  top: calc(-18.13rem - 8.75rem);
   position: relative;
   text-align: center;
   ${(props) =>
@@ -262,6 +265,7 @@ export const HomeReward = styled(ComLayout)`
   top: -10.63rem;
   position: relative;
   padding-bottom: 0.1rem;
+  margin-bottom: -10.63rem;
   .h22 {
     height: 8.75rem;
   }

@@ -9,6 +9,7 @@ const AuctionTime = styled.div<{ active: boolean }>`
   background: ${({ active }) => (active ? `url(${TIME_ICON2_IMG}) no-repeat` : `url(${TIME_ICON1_IMG}) no-repeat`)};
   background-size: 100% 100%;
   position: relative;
+  margin:0  0 2.5rem 0;
   span {
     font-size: 4.38rem;
     font-family: 'DIN-Alternate-Bold';
@@ -18,7 +19,7 @@ const AuctionTime = styled.div<{ active: boolean }>`
     position: absolute;
     top: calc(33% - 2.19rem);
     &:nth-child(1) {
-      left: 1.31rem;
+      left: 0.31rem;
     }
     &:nth-child(2) {
       left: calc(50% - 2.19rem + 0.3rem);
@@ -37,7 +38,7 @@ const AuctionTime = styled.div<{ active: boolean }>`
         span {
           font-size: 3.5rem;
           &:nth-child(1) {
-            left: 1.06rem;
+            left: 0.11rem;
           }
           &:nth-child(2) {
             left: calc(50% - 2.19rem + 0.3rem);
@@ -82,9 +83,9 @@ const CountDown = (props: IProps) => {
         setLeftTime(() => newLeftTime) //计算新的时间间隔数值
 
         let hours =
-          Math.floor((newLeftTime / 60 / 60) % 24) < 10
-            ? `0${Math.floor((newLeftTime / 60 / 60) % 24)}`
-            : Math.floor((newLeftTime / 60 / 60) % 24)
+          Math.floor((newLeftTime / 60 / 60)) < 10
+            ? `0${Math.floor((newLeftTime / 60 / 60))}`
+            : Math.floor((newLeftTime / 60 / 60))
         let minutes =
           Math.floor((newLeftTime / 60) % 60) < 10 ? `0${Math.floor((newLeftTime / 60) % 60)}` : Math.floor((newLeftTime / 60) % 60)
         let seconds = Math.floor(newLeftTime % 60) < 10 ? `0${Math.floor(newLeftTime % 60)}` : Math.floor(newLeftTime % 60)

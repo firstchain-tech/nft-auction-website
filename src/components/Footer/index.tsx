@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import styled, { css } from 'styled-components'
 import { Row, Col, Image } from 'antd'
-import LOGO from '@/assets/logo.png'
+import LOGO from '@/assets/logo-footer.png'
 import { Link } from 'react-router-dom'
 import { FOOTER_1, FOOTER_2, FOOTER_3 } from './icon'
 

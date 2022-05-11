@@ -19,7 +19,7 @@ import {
 import { LeftCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import AUCTION_DEFAULT_IMAGE from '@/assets/auction-default.png'
+import AUCTION_DEFAULT_IMAGE from '@/assets/auction-default2.png'
 import HEAD_MIN_ICON from '@/assets/head-icon.png'
 import { useAuctionHooks } from '@/hooks/useAuctionHooks'
 import useDataHooks from '@/hooks/useDataHooks'
@@ -49,7 +49,7 @@ export default memo(function AuctionPage(props: any) {
     return str
   })
   const { t } = useTranslation()
-  const { offersList, times } = useAuctionHooks({ key })
+  const { offersList } = useAuctionHooks({ key })
 
   const dataInit: ConstantInitTypes = useDataHooks()
   const { toWeiFromWei } = dataInit
@@ -58,6 +58,10 @@ export default memo(function AuctionPage(props: any) {
   const modalRef = useRef<any>(null)
 
   const { windowSize } = useWindowSizeHooks()
+
+  const startTime = moment('2022/05/25 10:00:00')
+  const endTime = moment('2022/05/26 21:00:00')
+  const currentTime = moment()
 
   useEffect(() => {
     let match = props.match
@@ -84,6 +88,10 @@ export default memo(function AuctionPage(props: any) {
 
   const onFinish = (values: any) => {}
 
+  useEffect(() => {
+    console.log('kye', key)
+  }, [key])
+
   return (
     <AuctionWrapper ref={modalRef}>
       <Link to="/home">
@@ -93,9 +101,9 @@ export default memo(function AuctionPage(props: any) {
       </Link>
       <AuctionInfo>
         <Image className="auction-image" src={AUCTION_DEFAULT_IMAGE} preview={false} />
-        <h1>{t('auction.start.title')}</h1>
+         <h1>{currentTime < startTime ? t('auction.start.title') : t('auction.end.title')}</h1> 
         <CountDown
-          timeStamp={moment().add(times, 'seconds').format('X')}
+          timeStamp={currentTime < startTime ? startTime.format('X'): endTime.format('X')}
           returnClick={() => {
             console.log('sss')
           }}
@@ -112,7 +120,7 @@ export default memo(function AuctionPage(props: any) {
           <div className="list">
             <h5>{t('auction.list.title1')}</h5>
             <div className="span">
-              15700.00 <span>{t('auction.list.title2')}</span>
+              3500.00 <span>{t('auction.list.title2')}</span>
             </div>
           </div>
           <div className="list">
@@ -219,7 +227,7 @@ export default memo(function AuctionPage(props: any) {
             </Form.Item>
             <ModalTitles>
               <span>{t('auction.modal.form.span1')}</span>
-              <span className="theme">15400.00&nbsp;{t('auction.modal.form.list1.uint')}</span>
+              <span className="theme">3500.00&nbsp;{t('auction.modal.form.list1.uint')}</span>
             </ModalTitles>
             <p>{t('auction.modal.form.p')}</p>
             <Button type="primary" htmlType="submit" className="submit-btn">

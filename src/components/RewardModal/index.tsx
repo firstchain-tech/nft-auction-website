@@ -6,6 +6,7 @@ import { RewardModalWrapper, RewardModalContent, RewardTile, RewardInfo, SpanTit
 // import useDataHooks from '@/hooks/useDataHooks'
 // import type { ConstantInitTypes } from '@/contracts/constantInit'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { useWindowSizeHooks } from '@/hooks/useWindowSizeHooks'
 import { Adapth5 } from '@/utils'
 
@@ -72,8 +73,10 @@ export default memo(function RewardModalPage(params: Type) {
             </Button>
           </div>
         </Form>
+        
         <Button type="primary" className="reward-btn" style={{ display: !isAuction ? 'block' : 'none' }}>
-          {t('home.reward.btn2')}
+        <Link to="/home#auction">{t('home.reward.btn2')}
+        </Link>
         </Button>
       </RewardModalContent>
     </RewardModalWrapper>

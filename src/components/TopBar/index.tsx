@@ -46,7 +46,7 @@ export default memo(function TopBarPages(params: Type) {
           </Button>
         </StyledNavLink>
 
-        {!isH5 && <ConnectWallet />}
+        {!isH5 && <ConnectWallet status='topbar' />}
       </Col>
     </TopBarWrapper>
   )

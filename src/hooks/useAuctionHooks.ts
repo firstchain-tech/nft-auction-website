@@ -17,7 +17,7 @@ export const useAuctionHooks = (props: Type) => {
 
   const getOffersList = async () => {
     let list: OffersListType[] = []
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 0; i++) {
       let expiration = 'about 1 hour'
       list.push({
         key: i.toString(),

@@ -1,6 +1,7 @@
 const auction = {
   'auction.title.go': 'Back to home',
   'auction.start.title': 'Starts in',
+  'auction.end.title': 'Ending at',
   'auction.start.h4': 'McGrady Moment',
   'auction.start.p': `"McGrady moment" NFT tells the story of famous basketball player Tracy McGrady who scored 13 points in 33 seconds and helped the
     Rockets magically beat the Spurs 81-80 at the last minute of a thrilling game between the Houston Rockets and the San Antonio

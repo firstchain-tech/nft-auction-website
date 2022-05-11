@@ -129,13 +129,17 @@ export default memo(function HomePages(pages: any) {
             <p>{t('home.about.list2.conent1')}</p>
           </Col>
           <Col span={24}>
-            <h4>{t('home.about.list2.title')}</h4>
-            <p>{t('home.about.list2.conent1')}</p>
+            <h4>{t('home.about.list3.title')}</h4>
+            <p>{t('home.about.list3.conent1')}</p>
           </Col>
         </HomeAboutList>
       </HomeAbout>
       <HomeAuction>
-        <AuctionTitle>{t('home.auction.title')}</AuctionTitle>
+        <AuctionTitle>
+      <h2 className="h22" id="auction">
+            {' '}
+            {''}
+          </h2>{t('home.auction.title')}</AuctionTitle>
         {auctionList.map((item, index) => (
           <AuctionModal key={index} details={item} />
         ))}

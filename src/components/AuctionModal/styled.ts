@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const AuctionModalWrapper = styled.div`
   position: relative;
-  top: -10.63rem;
+  top: calc(-10.13rem - 8.75rem);
   padding-bottom: 0.01rem;
 `
 
@@ -25,14 +25,14 @@ export const AuctionModalContent = styled.div`
     left: 6rem;
     z-index: 1;
     height: 24.75rem;
-    border-radius: 1.56rem;
+    border-radius: 2rem;
     box-shadow: 0 0.19rem 0.38rem -0.25rem rgba(0, 0, 0, 0.12), 0 0.38rem 1rem 0 rgba(0, 0, 0, 0.08),
       0 0.56rem 1.75rem 0.5rem rgba(0, 0, 0, 0.05);
   }
   .auction-image {
     width: 100%;
     height: 100%;
-    border-radius: 1.56rem;
+    border-radius: 2rem;
   }
   h4 {
     font-size: 1.75rem;
@@ -114,6 +114,9 @@ export const AuctionTimes = styled.div`
       () => css`
         font-size: 1.38rem;
         padding: 0 2.88rem;
+        height: auto;
+        line-height: 3rem;
+        max-width: 66%;
       `,
     )}
 `
