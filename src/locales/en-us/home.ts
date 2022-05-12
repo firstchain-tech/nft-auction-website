@@ -1,6 +1,6 @@
 const home = {
   'home.reward.topbar.btn': 'Reward drop',
-  'home.banner.h3': 'Huobi Global will exclusively launch the unique video NFT “McGrady Moment” in late May',
+  'home.banner.h3': 'Huobi NFT will exclusively launch the unique video NFT “McGrady Moment” in late May',
   'home.banner.h5':
     'Dear Users, Huobi NFT will exclusively launch the unique video NFT “McGrady Moment” with Metahallo in late May. Event will be held on Huobi NFT in late of May',
   'home.banner.list1.span': 'Type of Offer',
