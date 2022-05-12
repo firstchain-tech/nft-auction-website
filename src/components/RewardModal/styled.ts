@@ -167,6 +167,7 @@ export const RewardInfo = styled.div`
   color: ${(props) => props.theme.black};
   line-height: 2.5rem;
   opacity: 0.5;
+  text-align: center;
   margin-bottom: 5rem;
   ${(props) =>
     props.theme.mediaWidth.screenMd(

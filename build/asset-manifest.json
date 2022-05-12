@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.937e24e9.css",
-    "main.js": "/static/js/main.614e07b3.js",
+    "main.js": "/static/js/main.048d22f3.js",
     "static/js/787.99b72ff2.chunk.js": "/static/js/787.99b72ff2.chunk.js",
     "static/media/pingfangsc-semibold.otf": "/static/media/pingfangsc-semibold.8e390992a6213ee63834.otf",
     "static/media/PingFang-SC-Regular.ttf": "/static/media/PingFang-SC-Regular.8c5ef44dbcdd07d8e5ba.ttf",
@@ -28,11 +28,11 @@
     "index.html": "/index.html",
     "static/media/ETH.svg": "/static/media/ETH.a7bd4f1e393bb0298bc80dcee6aa4274.svg",
     "main.937e24e9.css.map": "/static/css/main.937e24e9.css.map",
-    "main.614e07b3.js.map": "/static/js/main.614e07b3.js.map",
+    "main.048d22f3.js.map": "/static/js/main.048d22f3.js.map",
     "787.99b72ff2.chunk.js.map": "/static/js/787.99b72ff2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.937e24e9.css",
-    "static/js/main.614e07b3.js"
+    "static/js/main.048d22f3.js"
   ]
 }

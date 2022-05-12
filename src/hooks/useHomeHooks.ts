@@ -41,7 +41,7 @@ export const useHomeHooks = () => {
       for (let i = 0; i < 1; i++) {
         list.push({
           iamge: REWARD_DEFAULT_IMAGE,
-          name: 'Huobi x McGrady NFT',
+          name: 'Huobi NFT x Tracy McGrady',
         })
       }
       setRewardList(list)

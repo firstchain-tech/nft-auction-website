@@ -3,7 +3,7 @@ import home from './en-us/home'
 import auction from './en-us/auction'
 
 const en = {
-  'app.link.btn': 'Connent Wallet',
+  'app.link.btn': 'Connect Wallet',
   'app.link.logout': 'Logout',
   'app.link.suceess': 'Login Success',
   'app.link.disconnect': 'Logout Success',
