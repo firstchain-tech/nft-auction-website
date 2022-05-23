@@ -1,0 +1,8 @@
+**/*.md
+**/*.svg
+**/*.html
+package.json
+config
+build
+public
+tsconfig.json
