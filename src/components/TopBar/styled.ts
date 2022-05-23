@@ -1,9 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Row } from 'antd'
 import { NavLink } from 'react-router-dom'
+import { webLayoutAdaptation, h5LayoutAdaptation, webLayoutAdaptationMax } from '@/common/styled'
 
 export const TopBarWrapper = styled(Row)`
-  width: 100%;
+  ${webLayoutAdaptation}
   height: 8.75rem;
   display: flex;
   align-items: center;
@@ -11,6 +12,15 @@ export const TopBarWrapper = styled(Row)`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+  }
+  ${(props) =>
+    props.theme.mediaWidth.screenMd(
+      () => css`
+        ${h5LayoutAdaptation}
+      `,
+    )}
+  @media(min-width: 1920px) {
+    ${webLayoutAdaptationMax}
   }
 `
 

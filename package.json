@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@types/bs58": "^4.0.1",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
     "@types/react": "^17.0.20",
@@ -24,11 +25,13 @@
     "@web3-react/walletconnect-connector": "latest",
     "antd": "^4.18.2",
     "bignumber.js": "^9.0.2",
+    "bs58": "4.0.0",
     "buffer": "^6.0.3",
     "craco-less": "^2.0.0",
     "cross-env": "^7.0.3",
     "i18next": "^21.6.5",
     "i18next-browser-languagedetector": "^6.1.2",
+    "moment": "^2.29.3",
     "monent": "^0.0.2-security",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
@@ -49,7 +52,6 @@
     "webpack": "^5.65.0"
   },
   "scripts": {
-    "start": "cross-env PORT=3000 craco start",
     "start:dev": "cross-env REACT_APP_ENV=dev PORT=3000 craco start",
     "start:uat": "cross-env REACT_APP_ENV=uat PORT=3000 craco start",
     "start:prd": "cross-env REACT_APP_ENV=prd PORT=3000 craco start",
@@ -87,5 +89,6 @@
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.0"
-  }
+  },
+  "proxy": "http://59.110.139.134:10090"
 }

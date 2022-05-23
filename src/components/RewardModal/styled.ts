@@ -2,7 +2,15 @@ import styled, { css } from 'styled-components'
 
 export const RewardModalWrapper = styled.div`
   padding-bottom: 0.01rem;
-  margin-top: 8.19rem;
+  margin-top: calc(8.19rem - 1.13rem);
+  position: relative;
+  z-index: 2;
+  /* .ant-spin {
+    height: 50.5rem !important;
+    max-height: 50.5rem !important;
+    display: flex !important;
+    align-items: end !important;
+  } */
 `
 
 export const RewardModalContent = styled.div`
@@ -11,7 +19,7 @@ export const RewardModalContent = styled.div`
   background: ${(props) => props.theme.white};
   box-shadow: 0rem 1.94rem 1.88rem 0rem rgba(146, 159, 198, 0.1);
   border-radius: 1.88rem;
-  margin-bottom: calc(8.75rem + 5.63rem);
+  margin-bottom: calc(8.75rem + 3.13rem);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -23,14 +31,14 @@ export const RewardModalContent = styled.div`
     left: 6rem;
     z-index: 1;
     height: 29.5rem;
-    border-radius: 2rem;
+    border-radius: 1.88rem;
     box-shadow: 0 0.19rem 0.38rem -0.25rem rgba(0, 0, 0, 0.12), 0 0.38rem 1rem 0 rgba(0, 0, 0, 0.08),
       0 0.56rem 1.75rem 0.5rem rgba(0, 0, 0, 0.05);
   }
   .Reward-image {
     width: 100%;
     height: 100%;
-    border-radius: 2rem;
+    border-radius: 1.88rem;
   }
   h5 {
     font-size: 1.75rem;
@@ -38,6 +46,8 @@ export const RewardModalContent = styled.div`
     font-weight: 600;
     color: ${(props) => props.theme.black};
     line-height: 2.5rem;
+    margin-bottom: 0;
+    margin-top: 0.5rem;
   }
   .reward-btn {
     min-width: 31.25rem;
@@ -46,10 +56,11 @@ export const RewardModalContent = styled.div`
     font-size: 1.63rem;
     font-family: 'PingFang-SC-Semibold';
     font-weight: 600;
-    margin-top: 3.75rem;
-    margin-bottom: 5.63rem;
+    margin-top: 3.44rem;
+    margin-bottom: 5rem;
   }
   .ant-form {
+    margin-top: 5rem;
     .ant-form-item-explain-error {
       font-weight: bold;
     }
@@ -150,12 +161,14 @@ export const RewardTile = styled.div`
   color: ${(props) => props.theme.black2};
   line-height: 4.25rem;
   margin-bottom: 0.63rem;
+  text-align: center;
   ${(props) =>
     props.theme.mediaWidth.screenMd(
       () => css`
         font-size: 2.81rem;
         line-height: 3.81rem;
         margin-bottom: 0.75rem;
+        width: calc(100% - 3rem);
       `,
     )}
 `
@@ -167,16 +180,14 @@ export const RewardInfo = styled.div`
   color: ${(props) => props.theme.black};
   line-height: 2.5rem;
   opacity: 0.5;
+  margin-bottom: 0;
   text-align: center;
-  margin-bottom: 5rem;
+  width: calc(100% - 12rem);
   ${(props) =>
     props.theme.mediaWidth.screenMd(
       () => css`
+        width: calc(100% - 3rem);
         font-size: 1.38rem;
-        overflow: hidden;
-        width: 95%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       `,
     )}
 `

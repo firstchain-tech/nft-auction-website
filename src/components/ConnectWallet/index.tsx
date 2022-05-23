@@ -20,16 +20,19 @@ import { SetActivaing } from '@/store/connector/action'
 import { connectorsByName, defaultChainId, getActiveChainId, RPC_URLS } from '@/contracts/constant'
 import { useTranslation } from 'react-i18next'
 // formatStrAddress,
-import { Adapth5, formatStrAddress } from '@/utils'
+import { AdaptFontSize, Adapth5 } from '@/utils'
 import { netWorks } from '@/contracts/constant'
 // SaveNetwork
 import { SaveIsLogin, SaveWallet } from '@/store/wallet/action'
 import { walletInit } from '@/contracts/init'
 import { getErrorMessage } from '@/hooks/useErrorHooks'
 import { SaveAddress } from '@/store/user/action'
-import { CloseOutlined, CopyOutlined } from '@ant-design/icons'
+import { CopyOutlined } from '@ant-design/icons'
 import { useWindowSizeHooks } from '@/hooks/useWindowSizeHooks'
 import TopBar from '@/components/TopBar'
+
+const CloseBase =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARFJREFUWEftl00KwjAQhb8iiEdx6anceB43nsqlRxFBkAErpVYzedPiIOkynZ+PN8lr2pH86ZLz0QCjE2oKNgWjCkTz/2oP7oArcAmqsgU2wNlTx6ugwe2BO3AMQBrcAVgBJw+kF7AvvAZuIqRUwwto05AaPMco59YAqpAynDWsBayFDMGpgF7IMFwEsAQ5C1wU8BOkrZuVRE78yyKVPTj217Fa9n4WuDkU7GGHkLameuXbx2UOBcejTgeYesRTpzXNIflmJT+3GQ+AJ6Z441IOSU3jmthJ2FpApaGSIxl1pJGc61VQbjCYm1TDC5j+ym9CpP5pKtrBUgHeES/Vv1i3ARYlKgQ0BZuCUQWi+en34APHLHApT7TexwAAAABJRU5ErkJggg=='
 
 const HeadingBase =
   'data:image/png;base64,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'
@@ -41,7 +44,7 @@ interface Type {
 export default memo(function ConnectWalletPage(props: Type) {
   // @ts-ignore
   const { ethereum } = window
-  const { REACT_APP_ENV = 'prd' } = process.env
+  // const { REACT_APP_ENV = 'prd' } = process.env
 
   const { status = '' } = props
 
@@ -67,7 +70,10 @@ export default memo(function ConnectWalletPage(props: Type) {
 
   useEffect(() => {
     setLoading(false)
-    if (active) setOnShow(false)
+    if (active) {
+      setIsLogoutShow(false)
+      setOnShow(false)
+    }
     if (!active) {
       dispatch(SaveIsLogin(false))
       dispatch(SaveWallet('NetWork'))
@@ -250,7 +256,7 @@ export default memo(function ConnectWalletPage(props: Type) {
   }
 
   return (
-    <ConnectWalletWrapper className="connect-wallet">
+    <ConnectWalletWrapper className="connect-wallet" style={{ marginLeft: !active ? '3.13rem' : '' }}>
       {active && myAddress && (
         <>
           <WalletTitleAddress
@@ -259,17 +265,20 @@ export default memo(function ConnectWalletPage(props: Type) {
             onMouseLeave={() => setIsLogoutShow(false)}
           >
             <Image src={HeadingBase} preview={false}></Image>
-            {windowSize.innerWidth >= Adapth5 && REACT_APP_ENV === 'dev' && (
+            {/* {windowSize.innerWidth >= Adapth5 && REACT_APP_ENV === 'dev' && (
               <span style={{ marginLeft: '0.75rem' }}>{formatStrAddress(6, 4, myAddress)}</span>
-            )}
+            )} */}
             <div style={{ display: isLogoutShow ? 'block' : 'none' }}>
               <WalletLoginOutModal onClick={() => loginOut()}>{t('app.link.logout')}</WalletLoginOutModal>
             </div>
           </WalletTitleAddress>
-          <WalletLoginOutMask style={{ display: isLogoutShow ? 'block' : 'none' }}></WalletLoginOutMask>
+          <WalletLoginOutMask
+            onClick={() => setIsLogoutShow(false)}
+            style={{ display: isLogoutShow ? 'block' : 'none' }}
+          ></WalletLoginOutMask>
         </>
       )}
-      {!active && status === 'topbar' && windowSize.innerWidth >= Adapth5 && (
+      {!active && status === 'topbar' && windowSize.innerWidth >= AdaptFontSize && (
         <Button
           size="large"
           type="primary"
@@ -285,7 +294,7 @@ export default memo(function ConnectWalletPage(props: Type) {
           {t('app.link.btn')}
         </Button>
       )}
-      {!active && status === 'topbar' && windowSize.innerWidth < Adapth5 && (
+      {!active && status === 'topbar' && windowSize.innerWidth < AdaptFontSize && (
         <Button
           size="large"
           type="primary"
@@ -336,7 +345,12 @@ export default memo(function ConnectWalletPage(props: Type) {
             )}
             <Col span={24} className="drawer-wallet-title drawer-wallet-h5">
               <DrawerTitle>{t('app.link.modal.title')}</DrawerTitle>
-              <CloseOutlined style={{ color: '#0000003c', fontSize: '1.5rem' }} onClick={() => setOnShow(false)} />
+              <Image
+                src={CloseBase}
+                preview={false}
+                style={{ width: '2.5rem', height: '2.5rem', cursor: 'pointer' }}
+                onClick={() => setOnShow(false)}
+              ></Image>
             </Col>
             <Col span={24} className="drawer-wallet-h5">
               <ModalTitle>{t('app.link.modal.ftitle')}</ModalTitle>

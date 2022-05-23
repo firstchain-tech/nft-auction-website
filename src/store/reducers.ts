@@ -3,6 +3,7 @@ import { reducer as themeReducer } from './theme'
 import { reducer as userReducer } from './user'
 import { reducer as connectorReducer } from './connector'
 import { reducer as walletReducer } from './wallet'
+import { reducer as infoReducer } from './info'
 
 /**
  * theme 主题 styled-components
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   userInfo: userReducer,
   connectorInfo: connectorReducer,
   walletInfo: walletReducer,
+  infoInfo: infoReducer,
 })
 
 export default reducer

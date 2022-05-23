@@ -24,11 +24,23 @@ export interface AuctionListType {
   iamge: string
   name: string
   price: string
+  key: string
+  tokenId: string
+  amount: string
+  collectibleHash: string
+  collection: string
+  currency: string
+  finish: string
+  opening: string
+  seller: string
+  blockNumber: string
   startTime: string
   endTime: string
-  edition: string
-  key: string
+  totalPrice: string
+  numberKey: string
 }
+
+/** numberKey -》 blocakNumbr+Tokenid+acount */
 
 export interface RewardListType {
   iamge: string
@@ -41,5 +53,25 @@ export interface OffersListType {
   floorDifference: string
   isHight: boolean
   expiration: string
-  from: string
+  collectibleHash: string
+  bidder: string
+  price: string
+  finish: string
+  blockNumber: string
+  index: number
+}
+
+export interface ArrRequestType {
+  address: string
+  apiKey: string
+  apiUrl: string
+  topic0: any
+  eventNme: string
+}
+
+export interface RoadmapListType {
+  name: string
+  amount: string
+  unit: string
+  content: string[]
 }

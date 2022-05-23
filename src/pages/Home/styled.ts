@@ -1,11 +1,18 @@
 import styled, { css } from 'styled-components'
 import { Row } from 'antd'
-import { ComLayout } from '@/common/styled'
 import BANNER from '@/assets/banner.jpg'
 import M_BANNER from '@/assets/m-banner.jpg'
 import BANNER_DATA_IMG from '@/assets/banner-data.png'
+import { webLayoutAdaptation, h5LayoutAdaptation, webLayoutAdaptationMax } from '@/common/styled'
 
 export const HomeWrapper = styled.div`
+  .home-wrappers {
+    margin-bottom: -3.5rem;
+    position: relative;
+    top: -3.5rem;
+    color: transparent;
+    height: calc(12.25rem - 8.75rem);
+  }
   #collect {
     .ant-form-item-explain-error {
       font-weight: bold;
@@ -63,38 +70,67 @@ export const HomeWrapper = styled.div`
     )}
 `
 
-export const HomeBanner = styled(ComLayout)`
-  position: relative;
+export const HomeMaxBgColor1 = styled.div`
+  background: ${(props) => props.theme.bgColor1};
+`
+export const HomeMaxBgColor2 = styled.div`
+  background: ${(props) => props.theme.bgColor2};
+`
+
+export const Banner = styled.div`
   width: 100%;
-  height: auto;
-  background: url(${BANNER}) no-repeat;
-  background-size: 100% auto;
-  h3 {
-    font-size: 2.31rem;
-    font-family: 'Avenir-Bold';
-    font-weight: 900;
-    color: ${(props) => props.theme.white};
-    margin-top: 8.13rem;
-    line-height: 4rem;
+  min-height: 72.5rem;
+  position: absolute;
+  z-index: 0;
+  @media (min-width: 1921px) {
+    background: url(${BANNER}) no-repeat;
+    background-size: min(120rem, 100%) auto;
+    background-position: center;
+    top: 0;
   }
-  h5 {
-    margin-top: 1.88rem;
-    font-size: 1.5rem;
-    font-family: 'Avenir';
-    font-weight: 500;
-    color: rgba(255,255,255,0.5);
-    line-height: 2.25rem;
+  @media (max-width: 1920px) {
+    background: url(${BANNER}) no-repeat;
+    background-size: 100% auto;
   }
   ${(props) =>
     props.theme.mediaWidth.screenMd(
       () => css`
-        min-height: 46.5rem;
         background: url(${M_BANNER}) no-repeat;
-        background-size: 100% 46.5rem;
-        background-position: right 0% top -1%;
+        background-size: 100% auto;
         /* background-repeat: no-repeat;
         background-position: right 31% top 0%;
         background-size: auto 46.5rem; */
+      `,
+    )}
+`
+
+export const HomeBanner = styled.div`
+  position: relative;
+  height: auto;
+  z-index: 1;
+  ${webLayoutAdaptation}
+  h3 {
+    font-size: 2.31rem;
+    font-family: 'Avenir-bold';
+    font-weight: 600;
+    color: ${(props) => props.theme.white};
+    margin-top: 7.25rem;
+    line-height: 4rem;
+    margin-bottom: 1.88rem;
+  }
+  h5 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-family: 'Avenir';
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 2.25rem;
+    margin-bottom: 0;
+  }
+  ${(props) =>
+    props.theme.mediaWidth.screenMd(
+      () => css`
+        ${h5LayoutAdaptation}
         h3 {
           font-size: 2.31rem;
           line-height: 3.19rem;
@@ -102,6 +138,9 @@ export const HomeBanner = styled(ComLayout)`
         }
       `,
     )}
+  @media(min-width: 1920px) {
+    ${webLayoutAdaptationMax}
+  }
 `
 
 export const BannerData = styled.div`
@@ -126,7 +165,7 @@ export const BannerData = styled.div`
     position: relative;
     z-index: 1;
     margin-left: 3.13rem;
-    width: calc(33% - 3.13rem);
+    /* width: calc(33% - 3.13rem); */
     span {
       font-size: 0.94rem;
       font-family: 'Avenir';
@@ -135,11 +174,11 @@ export const BannerData = styled.div`
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
       overflow: hidden;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.56rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.88rem;
     }
     h4 {
-      font-size: 1.56rem;
+      font-size: 1.88rem;
       font-family: 'Avenir';
       font-weight: 900;
       display: -webkit-box;
@@ -147,11 +186,14 @@ export const BannerData = styled.div`
       -webkit-line-clamp: 1;
       overflow: hidden;
       color: ${(props) => props.theme.white};
-      line-height: 1.56rem;
+      line-height: 1.88rem;
       margin-top: 0.5rem;
     }
     &:nth-child(1) {
       margin-left: 2.31rem;
+    }
+    &:nth-child(1) {
+      margin-left: 3.81rem;
     }
   }
   ${(props) =>
@@ -166,31 +208,59 @@ export const BannerData = styled.div`
     )}
 `
 
-export const HomeAbout = styled(ComLayout)`
+export const HomeAbout = styled.div`
+  ${webLayoutAdaptation}
   position: relative;
   top: -11.5rem;
   margin-bottom: 18.13rem;
+  .about-content {
+    display: flex;
+    .home-aboutsss {
+      width: 20.13rem;
+      height: 31.25rem;
+    }
+    .content-right {
+      margin-left: 3.19rem;
+    }
+  }
   h4 {
     font-size: 1.75rem;
     font-family: 'Avenir';
     font-weight: 900;
     color: ${(props) => props.theme.white};
-    line-height: 2rem;
+    /* line-height: 4rem; */
+    margin-top: -0.94rem;
+    margin-bottom: 0.63rem;
   }
   p {
     font-size: 1.5rem;
     font-family: 'Avenir';
     font-weight: 500;
-    color: rgba(255,255,255,0.4);
-    line-height: 1.98rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 2.13rem;
     margin-bottom: 0.63rem;
+  }
+  ${(props) =>
+    props.theme.mediaWidth.screenMd(
+      () => css`
+        ${h5LayoutAdaptation}
+        position: relative;
+        top: -11.5rem;
+        margin-bottom: 18.13rem;
+      `,
+    )}
+  @media(min-width: 1920px) {
+    ${webLayoutAdaptationMax}
+    position: relative;
+    top: -11.5rem;
+    margin-bottom: 18.13rem;
   }
 `
 
 export const HomeAboutTitle = styled.div`
   font-size: 2.13rem;
-  font-family: 'Avenir';
-  font-weight: 900;
+  font-family: 'Avenir-bold';
+  font-weight: 600;
   color: #ffffff;
   line-height: 4rem;
   margin-bottom: 3.44rem;
@@ -230,16 +300,38 @@ export const HomeAboutList = styled(Row)`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  .h22 {
+    height: 8.75rem;
+    position: relative;
+    z-index: 0;
+    top: -8.75rem;
+    margin-bottom: -8.75rem;
+  }
 `
 
-export const HomeAuction = styled(ComLayout)`
-  width: 100%;
-  min-height: 57.5rem;
-  background: ${(props) => props.theme.bgColor2};
-  margin-bottom: -8.75rem;
+export const HomeAuction = styled.div`
+  ${webLayoutAdaptation}
+  position: relative;
+  z-index: 2;
   .h22 {
     height: 8.75rem;
     margin-bottom: 0;
+    position: relative;
+    z-index: 0;
+  }
+  ${(props) =>
+    props.theme.mediaWidth.screenMd(
+      () => css`
+        ${h5LayoutAdaptation}
+        position: relative;
+        z-index: 2;
+      `,
+    )}
+  @media(min-width: 1920px) {
+    ${webLayoutAdaptationMax}
+    position: relative;
+    z-index: 2;
   }
 `
 
@@ -249,7 +341,7 @@ export const AuctionTitle = styled.div`
   font-weight: 900;
   color: #ffffff;
   line-height: 6rem;
-  top: calc(-18.13rem - 8.75rem);
+  top: -8.75rem;
   position: relative;
   text-align: center;
   ${(props) =>
@@ -260,14 +352,29 @@ export const AuctionTitle = styled.div`
     )}
 `
 
-export const HomeReward = styled(ComLayout)`
+export const HomeReward = styled.div`
+  ${webLayoutAdaptation}
   background: ${(props) => props.theme.bgColor2};
-  top: -10.63rem;
   position: relative;
   padding-bottom: 0.1rem;
-  margin-bottom: -10.63rem;
   .h22 {
     height: 8.75rem;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 0;
+  }
+  ${(props) =>
+    props.theme.mediaWidth.screenMd(
+      () => css`
+        ${h5LayoutAdaptation}
+        position: relative;
+        padding-bottom: 0.1rem;
+      `,
+    )}
+  @media(min-width: 1920px) {
+    ${webLayoutAdaptationMax}
+    position: relative;
+    padding-bottom: 0.1rem;
   }
 `
 
@@ -277,6 +384,8 @@ export const RewardTitle = styled.div`
   font-weight: 900;
   color: ${(props) => props.theme.black2};
   line-height: 6rem;
+  z-index: 2;
+  position: relative;
   text-align: center;
   ${(props) =>
     props.theme.mediaWidth.screenMd(
@@ -292,9 +401,7 @@ export const CollectRewardsDiv = styled.div`
   background: ${(props) => props.theme.white};
   box-shadow: 0rem 1.94rem 1.88rem 0rem rgba(146, 159, 198, 0.1);
   border-radius: 1.88rem;
-  margin-bottom: calc(12.25rem - 5.63rem);
   position: relative;
-  top: -5.63rem;
   h2 {
     font-size: 1.75rem;
     font-family: 'PingFang-SC-Semibold';
@@ -310,4 +417,21 @@ export const CollectRewardsDiv = styled.div`
         top: -2.63rem;
       `,
     )}
+`
+
+export const HomeAboutH5 = styled.div`
+  .home-h5-about-img {
+    float: left;
+    margin-right: 2.25rem;
+    .home-aboutsss {
+      max-width: 14.06rem;
+      max-height: 21.88rem;
+    }
+  }
+`
+
+export const HomeListTop = styled.div`
+  position: relative;
+  top: calc(-10.63rem - 8.75rem);
+  margin-bottom: -10.63rem;
 `

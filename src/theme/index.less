@@ -23,12 +23,12 @@ code {
 
 @font-face {
   font-family: 'Avenir';
-  src: url('@{fontImg}Avenir.otf');
+  src: url('@{fontImg}Avenir.ttc');
 }
 
 @font-face {
   font-family: 'Avenir-Bold';
-  src: url('@{fontImg}Avenir-Bold.otf');
+  src: url('@{fontImg}Avenir-Medium-6.otf');
 }
 
 @font-face {
@@ -43,7 +43,7 @@ code {
 
 @font-face {
   font-family: 'PingFang-SC-Semibold';
-  src: url('@{fontImg}pingfangsc-semibold.otf');
+  src: url('@{fontImg}PingFang-SC-Semibold.ttf');
 }
 
 /** ant message customize css */
@@ -66,19 +66,18 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 3.13rem;
   .wallet {
     box-shadow: @shadow-1-down;
     background-color: @orange-base;
     border-color: @orange-base;
   }
   @media screen and (max-width: @screen-md) {
-    margin-left: 1.5rem;
+    margin-left: 1.5rem !important;
   }
 }
 
 .gray {
-  color: #979797 !important;
+  color: rgba(151, 151, 151, 0.2) !important;
 }
 
 .login-form {
@@ -110,17 +109,19 @@ code {
 }
 
 .no-network-btns {
-  font-size: 1rem;
-  font-weight: 500;
-  margin-left: 1.25rem;
-  color: @theme;
-  border-color: #fff;
-  border-radius: 1.81rem;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  margin-left: 1.25rem !important;
+  color: @theme !important;
+  border-color: #fff !important;
+  border-radius: 1.81rem !important;
+  height: auto !important;
+  min-width: auto !important;
   &:hover,
   &:focus {
-    border-color: #fff;
-    color: @theme;
-    background: #fff;
+    border-color: #fff !important;
+    color: @theme !important;
+    background: #fff !important;
   }
 }
 
@@ -147,6 +148,12 @@ code {
   }
 }
 
+.disabled-btn {
+  background-color: rgba(130, 130, 130, 0.1) !important;
+  background: rgba(130, 130, 130, 0.1) !important;
+  color: #606060 !important;
+}
+
 .menu-active-wallet {
   background: #efeefd;
 }
@@ -159,6 +166,16 @@ code {
   font-weight: 600;
   color: #ffffff;
   font-family: 'PingFang-SC-Regular';
+}
+
+.wallet-login-icon-h51 {
+  width: 3.63rem !important;
+  height: 3.63rem !important;
+  min-width: auto !important;
+  padding: 0 !important;
+  .anticon {
+    font-size: 1.63rem !important;
+  }
 }
 
 .reward-drop-btn-h5 {
@@ -217,7 +234,7 @@ code {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 3.13rem;
+    margin-bottom: 1.88rem;
   }
 }
 
@@ -348,6 +365,10 @@ code {
 }
 
 .modal-mask {
+  .modal-close-icons {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
   .ant-modal-close {
     top: 1.75rem;
     right: 1.5rem;
@@ -362,20 +383,57 @@ code {
     color: #333333;
     line-height: 3.25rem;
     text-align: center;
+    padding: 0 1.25rem 0 2rem;
+    margin-bottom: 1.88rem;
   }
 }
 
-.ant-btn-primary:hover, .ant-btn-primary:focus {
+.loadings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 8.75rem;
+}
+
+.home-auction-loading {
+  position: relative;
+  min-height: 14.75rem !important;
+  background: #ffffff;
+  box-shadow: 0rem 1.94rem 1.88rem 0rem rgb(146 159 198 / 10%);
+  border-radius: 1.88rem;
+}
+
+.auction-loading {
+  position: relative;
+  top: -28.63rem;
+  min-height: 14.75rem !important;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
   color: #fff;
   border-color: #471fbf;
   background: #471fbf;
 }
-.wallet-login-icon-h51 {
-  width: 3.63rem !important;
-  height: 3.63rem !important;
-  min-width: auto !important;
-  padding: 0 !important;
-  .anticon {
-    font-size: 1.63rem !important;
-  }
+
+.layout-loading {
+  max-height: 100vh !important;
+}
+
+// .ant-spin-blur {
+//   opacity: 0.89 !important;
+//   &::after {
+//     opacity: 0 !important;
+//   }
+// }
+
+::-webkit-scrollbar {
+  display: none;
+}
+.element {
+  -ms-overflow-style: none;
+}
+.element {
+  overflow: -moz-scrollbars-none;
 }

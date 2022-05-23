@@ -41,8 +41,8 @@ export const WalletTitleAddress = styled.div`
   line-height: 8.75rem;
   height: 8.75rem;
   padding-left: 3.13rem;
-  left: -3.13rem;
-  min-width: 12.13rem;
+  /* left: -3.13rem; */
+  min-width: 7.13rem;
   span {
     font-size: 1.25rem;
     font-family: 'PingFang-SC-Regular';
@@ -88,7 +88,7 @@ export const WalletInitDiv = styled(Row)`
       margin-right: 1.75rem;
     }
     &:nth-child(1) {
-      border-bottom: 1px solid ${(props) => props.theme.line};
+      border-bottom: 0.06rem solid ${(props) => props.theme.line};
     }
     .choose-span {
       font-size: 1.13rem;
@@ -102,7 +102,7 @@ export const WalletInitDiv = styled(Row)`
 export const WalletLoginOutModal = styled.div`
   position: absolute;
   top: 8.75rem;
-  right: calc(8.75rem / 2);
+  right: -1.06rem;
   width: 13.56rem;
   height: 5rem;
   background: ${(props) => props.theme.white};

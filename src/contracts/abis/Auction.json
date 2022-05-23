@@ -30,6 +30,12 @@
         "internalType": "uint256",
         "name": "price",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "finish",
+        "type": "uint256"
       }
     ],
     "name": "Bided",
@@ -383,19 +389,6 @@
   {
     "inputs": [],
     "name": "INTERFACE_ID_ERC1155",
-    "outputs": [
-      {
-        "internalType": "bytes4",
-        "name": "",
-        "type": "bytes4"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "INTERFACE_ID_ERC2981",
     "outputs": [
       {
         "internalType": "bytes4",

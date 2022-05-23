@@ -1,6 +1,8 @@
-import React, { memo, useEffect } from 'react'
-import { Row, Col, Image, Form, Input, Button } from 'antd'
+/* eslint-disable */
+import React, { memo, useEffect, useState } from 'react'
+import { Row, Col, Image, Form, Input, Button, Spin, message } from 'antd'
 import {
+  Banner,
   HomeWrapper,
   HomeBanner,
   BannerData,
@@ -13,6 +15,10 @@ import {
   HomeReward,
   RewardTitle,
   CollectRewardsDiv,
+  HomeMaxBgColor1,
+  HomeMaxBgColor2,
+  HomeAboutH5,
+  HomeListTop,
 } from './styled'
 import { useForm } from 'antd/lib/form/Form'
 import { useTranslation } from 'react-i18next'
@@ -30,7 +36,14 @@ import AuctionModal from '@/components/AuctionModal'
 import RewardModal from '@/components/RewardModal'
 import { useWindowSizeHooks } from '@/hooks/useWindowSizeHooks'
 import { Adapth5, scrollToAnchor } from '@/utils'
+import { useSelector } from 'react-redux'
 import { SpanTitle } from '@/components/RewardModal/styled'
+import useDataHooks from '@/hooks/useDataHooks'
+import type { ConstantInitTypes } from '@/contracts/constantInit'
+import { getWinnerAwardRequest } from '@/api'
+import { ResponseCode } from '@/contracts/init'
+import { roadmapList } from '@/common/init'
+import RoadmapModal from '@/components/RoadmapModal'
 
 const ABOUT_ICON_INIT = [ABOUT_ICON1, ABOUT_ICON2, ABOUT_ICON3, ABOUT_ICON4, ABOUT_ICON5, ABOUT_ICON6, ABOUT_ICON7, ABOUT_ICON8]
 
@@ -39,11 +52,16 @@ export default memo(function HomePages(pages: any) {
   const { windowSize } = useWindowSizeHooks()
   const [form] = useForm()
 
-  const { auctionList, rewardList, isAuction, isAuctionSuccess } = useHomeHooks()
+  const dataInit: ConstantInitTypes = useDataHooks()
+  const { web3 } = dataInit
+
+  const myAddress = useSelector((state: any) => state.userInfo.address)
+  const [spinLoading, setSpinLoading] = useState<boolean>(false)
+  const { auctionList, rewardList, isAuction, isAuctionSuccess, loading } = useHomeHooks({ myAddress })
 
   const layout = {
-    labelCol: { span: 6 },
-    wrapperCol: { span: 18 },
+    labelCol: { span: 8, sm: { span: 5 } },
+    wrapperCol: { span: 16, sm: { span: 19 } },
   }
 
   useEffect(() => {
@@ -54,6 +72,7 @@ export default memo(function HomePages(pages: any) {
 
   useEffect(() => {
     let hash = pages.location.hash
+    console.log('hash', hash)
     if (hash.length > 0) {
       let str = hash.substr(1)
       scrollToAnchor(str)
@@ -63,113 +82,192 @@ export default memo(function HomePages(pages: any) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pages])
 
-  const onFinish = (values: any) => {}
+  const onFinish = async (values: any) => {
+    setSpinLoading(true)
+    try {
+      let params = {
+        ...values,
+        address: myAddress,
+      }
+      console.log('params', params)
+      const response: any = await getWinnerAwardRequest(params)
+      console.log('response', response)
+      if (response) {
+        let text = ResponseCode[response.code]
+        if (response.code === 0) {
+          message.success({
+            content: text,
+            className: 'message-global',
+          })
+          form.resetFields()
+          setTimeout(() => {
+            setSpinLoading(false)
+          }, 1000)
+          return
+        }
+        message.error({
+          content: text,
+          className: 'message-global',
+        })
+        setTimeout(() => {
+          setSpinLoading(false)
+        }, 1000)
+      }
+      setTimeout(() => {
+        setSpinLoading(false)
+      }, 1000)
+    } catch (error) {
+      console.log('error', error)
+      setSpinLoading(false)
+    }
+  }
 
   return (
     <HomeWrapper>
-      <HomeBanner>
-        <Row>
-          <Col span={16} md={{ span: 18 }}>
-            <h3>{t('home.banner.h3')}</h3>
-          </Col>
-          <Col span={14}>
-            <h5>{t('home.banner.h5')}</h5>
-          </Col>
-          <Col span={24} md={{ span: 16 }}>
-            <BannerData>
-              <div className="list">
-                <span>{t('home.banner.list1.span')}</span>
-                <h4>{t('home.banner.list1.h4')}</h4>
+      <HomeMaxBgColor1>
+        <Banner></Banner>
+        <HomeBanner>
+          <Row>
+            <Col span={16} md={{ span: 18 }}>
+              <h3>{t('home.banner.h3')}</h3>
+            </Col>
+            <Col span={14}>
+              <h5>{t('home.banner.h5')}</h5>
+            </Col>
+            <Col span={24} md={{ span: 16 }}>
+              <BannerData>
+                <div className="list">
+                  <span>{t('home.banner.list1.span')}</span>
+                  <h4>{t('home.banner.list1.h4')}</h4>
+                </div>
+                <div className="list">
+                  <span>{t('home.banner.list2.span')}</span>
+                  <h4>{t('home.banner.list2.h4')}</h4>
+                </div>
+                <div className="list">
+                  <span>{t('home.banner.list3.span')}</span>
+                  <h4>{t('home.banner.list3.h4')}</h4>
+                </div>
+              </BannerData>
+            </Col>
+          </Row>
+        </HomeBanner>
+        <HomeAbout>
+          <HomeAboutTitle>{t('home.about.title')}</HomeAboutTitle>
+          {windowSize.innerWidth >= Adapth5 && (
+            <div className="about-content">
+              <div>
+                <Image className="home-aboutsss" src={ABOUT_FIGURE} width="100%" height="auto" preview={false} />
               </div>
-              <div className="list">
-                <span>{t('home.banner.list2.span')}</span>
-                <h4>{t('home.banner.list2.h4')}</h4>
-              </div>
-              <div className="list">
-                <span>{t('home.banner.list3.span')}</span>
-                <h4>{t('home.banner.list3.h4')}</h4>
-              </div>
-            </BannerData>
-          </Col>
-        </Row>
-      </HomeBanner>
-      <HomeAbout>
-        <HomeAboutTitle>{t('home.about.title')}</HomeAboutTitle>
-        <Row>
-          <Col span={8} md={{ span: 6 }}>
-            <Image src={ABOUT_FIGURE} width="100%" height="auto" preview={false} />
-          </Col>
-          <Col span={15} offset={1} md={{ span: 17, offset: 1 }}>
-            <h4>{t('home.about.list1.title')}</h4>
-            <p>{t('home.about.list1.conent1')}</p>
-            {windowSize.innerWidth >= Adapth5 && (
-              <>
+              <div className="content-right">
+                <h4>{t('home.about.list1.title')}</h4>
+                <p>{t('home.about.list1.conent1')}</p>
                 <p>{t('home.about.list1.conent2')}</p>
                 <p>{t('home.about.list1.conent3')}</p>
-              </>
-            )}
-          </Col>
+              </div>
+            </div>
+          )}
           {windowSize.innerWidth < Adapth5 && (
-            <Col span={24}>
+            <HomeAboutH5>
+              <div className="home-h5-about-img">
+                <Image className="home-aboutsss" src={ABOUT_FIGURE} width="100%" height="auto" preview={false} />
+              </div>
+              <h4>{t('home.about.list1.title')}</h4>
+              <p>{t('home.about.list1.conent1')}</p>
               <p style={{ marginTop: '1em' }}>{t('home.about.list1.conent2')}</p>
               <p>{t('home.about.list1.conent3')}</p>
-            </Col>
+            </HomeAboutH5>
           )}
-        </Row>
-        <HomeAboutIcon>
-          {ABOUT_ICON_INIT.map((item, index) => (
-            <Col span={6} key={index}>
-              <Image src={item} preview={false}></Image>
+          <HomeAboutIcon>
+            {ABOUT_ICON_INIT.map((item, index) => (
+              <Col span={6} key={index}>
+                <Image src={item} preview={false}></Image>
+              </Col>
+            ))}
+          </HomeAboutIcon>
+          <HomeAboutList>
+            <Col span={24}>
+              <h4 style={{ marginTop: 'calc(6.88rem - 3.25rem)' }}>{t('home.about.list2.title')}</h4>
+              <p>{t('home.about.list2.conent1')}</p>
             </Col>
-          ))}
-        </HomeAboutIcon>
-        <HomeAboutList>
-          <Col span={24}>
-            <h4>{t('home.about.list2.title')}</h4>
-            <p>{t('home.about.list2.conent1')}</p>
-          </Col>
-          <Col span={24}>
-            <h4>{t('home.about.list3.title')}</h4>
-            <p>{t('home.about.list3.conent1')}</p>
-          </Col>
-        </HomeAboutList>
-      </HomeAbout>
-      <HomeAuction>
-        <AuctionTitle>
-      <h2 className="h22" id="auction">
-            {' '}
-            {''}
-          </h2>{t('home.auction.title')}</AuctionTitle>
-        {auctionList.map((item, index) => (
-          <AuctionModal key={index} details={item} />
-        ))}
-      </HomeAuction>
-      <HomeReward>
-        <h2 className="h22" id="reward">
-          {''}
-        </h2>
-        <RewardTitle>{t('home.reward.title')}</RewardTitle>
-        {rewardList.map((item, index) => (
-          <RewardModal key={index} details={item} index={index} isAuction={isAuction} />
-        ))}
-        <CollectRewardsDiv style={{ display: isAuctionSuccess ? 'block' : 'none' }}>
-          <h2>{t('home.collect.form.h2')}</h2>
-          <Form {...layout} form={form} name="collect" onFinish={onFinish}>
-            <Form.Item
-              name="email"
-              label={<SpanTitle>{t('home.collect.form1.label')}</SpanTitle>}
-              rules={[{ required: true, message: t('home.collect.form1.rules') }]}
-            >
-              <Input placeholder={t('home.collect.form1.placeholder')} style={{ padding: '0 2.5rem' }} className="form-email" />
-            </Form.Item>
-            <div className="reward-form-btn">
-              <Button type="primary" htmlType="submit" className="reward-btn">
-                {t('home.collect.btn')}
-              </Button>
-            </div>
-          </Form>
-        </CollectRewardsDiv>
-      </HomeReward>
+            <Col span={24}>
+              <h2 className="h22" id="reward">
+                {''}
+              </h2>
+              <h4>{t('home.about.list3.title')}</h4>
+              {roadmapList.map((item, i) => (
+                <RoadmapModal details={item} key={i} />
+              ))}
+              <p style={{ marginTop: '3.69rem' }}>{t('home.about.list3.p1')}</p>
+              <p>{t('home.about.list3.p2')}</p>
+            </Col>
+          </HomeAboutList>
+        </HomeAbout>
+      </HomeMaxBgColor1>
+      <HomeMaxBgColor2>
+        <HomeListTop>
+          <HomeAuction>
+            <AuctionTitle>
+              <h2 className="h22" id="auction">
+                {' '}
+                {''}
+              </h2>
+              {t('home.auction.title')}
+            </AuctionTitle>
+            {!loading &&
+              auctionList.length > 0 &&
+              auctionList.map((item, index) => <AuctionModal key={index} details={item} keyTop={index === auctionList.length - 1} />)}
+            {loading && (
+              <div className="loadings home-auction-loading">
+                <Spin tip="Loading..." />
+              </div>
+            )}
+            {!loading && auctionList.length === 0 && <div className="home-auction-loading"></div>}
+          </HomeAuction>
+          {/* <HomeReward>
+            <h2 className="h22" id="reward">
+              {''}
+            </h2>
+            <RewardTitle>{t('home.reward.title')}</RewardTitle>
+            {rewardList.map((item, index) => (
+              <RewardModal key={index} details={item} index={index} isAuction={isAuction} />
+            ))}
+            {myAddress && (
+              <Spin tip="Loading..." spinning={spinLoading}>
+                <CollectRewardsDiv style={{ display: isAuctionSuccess ? 'block' : 'none' }}>
+                  <h2>{t('home.collect.form.h2')}</h2>
+                  <Form {...layout} form={form} name="collect" onFinish={onFinish}>
+                    <Form.Item
+                      name="hold_address"
+                      label={<SpanTitle>{t('home.collect.form1.label')}</SpanTitle>}
+                      rules={[
+                        { required: true, message: t('home.collect.form1.rules') },
+                        {
+                          validator: async (_, value) => {
+                            if (value !== '') {
+                              let isAddress = await web3.utils.isAddress(value)
+                              if (!isAddress) throw new Error(t('home.collect.form1.rules2'))
+                            }
+                          },
+                        },
+                      ]}
+                    >
+                      <Input placeholder={t('home.collect.form1.placeholder')} style={{ padding: '0 2.5rem' }} className="form-email" />
+                    </Form.Item>
+                    <div className="reward-form-btn">
+                      <Button type="primary" htmlType="submit" className="reward-btn">
+                        {t('home.collect.btn')}
+                      </Button>
+                    </div>
+                  </Form>
+                </CollectRewardsDiv>
+              </Spin>
+            )}
+          </HomeReward> */}
+          <div className="home-wrappers">.</div>
+        </HomeListTop>
+      </HomeMaxBgColor2>
     </HomeWrapper>
   )
 })
+/* eslint-enable */

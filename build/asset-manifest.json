@@ -1,19 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.937e24e9.css",
-    "main.js": "/static/js/main.048d22f3.js",
+    "main.css": "/static/css/main.3431d6a8.css",
+    "main.js": "/static/js/main.67d471c3.js",
     "static/js/787.99b72ff2.chunk.js": "/static/js/787.99b72ff2.chunk.js",
-    "static/media/pingfangsc-semibold.otf": "/static/media/pingfangsc-semibold.8e390992a6213ee63834.otf",
-    "static/media/PingFang-SC-Regular.ttf": "/static/media/PingFang-SC-Regular.8c5ef44dbcdd07d8e5ba.ttf",
+    "static/media/PingFang-SC-Semibold.ttf": "/static/media/PingFang-SC-Semibold.6d473fe239a1069c3515.ttf",
+    "static/media/Avenir.ttc": "/static/media/Avenir.bd849aa48220dc5266c4.ttc",
     "static/media/auction-default2.png": "/static/media/auction-default2.f49e289f76de007662ec.png",
     "static/media/reward-default.png": "/static/media/reward-default.9f26e187c0a1e0ba6980.png",
     "static/media/banner.jpg": "/static/media/banner.c2a8327c4f1af826de81.jpg",
     "static/media/auction-default.png": "/static/media/auction-default.ff6457a04446596534c2.png",
-    "static/media/m-banner.jpg": "/static/media/m-banner.b415417b7aed46748f87.jpg",
+    "static/media/m-banner.jpg": "/static/media/m-banner.3d8fb21346178f258f79.jpg",
     "static/media/about-figure.png": "/static/media/about-figure.2a4ae5b09c5653d12002.png",
     "static/media/DIN-Alternate-Bold.ttf": "/static/media/DIN-Alternate-Bold.dc2106363a0044039a52.ttf",
-    "static/media/Avenir-Bold.otf": "/static/media/Avenir-Bold.711a4eb654bf1139f123.otf",
-    "static/media/Avenir.otf": "/static/media/Avenir.813557df4c7a90b1a474.otf",
+    "static/media/Avenir-Medium-6.otf": "/static/media/Avenir-Medium-6.656f023274dce101a6c2.otf",
     "static/media/banner-data.png": "/static/media/banner-data.9b2cba7b7af46f12ebc0.png",
     "static/media/about-icon8.png": "/static/media/about-icon8.4282c14dd6d13575d41b.png",
     "static/media/about-icon6.png": "/static/media/about-icon6.a644e77012b9a6163de3.png",
@@ -22,17 +21,18 @@
     "static/media/time-icon2.png": "/static/media/time-icon2.d4d7858523f829620645.png",
     "static/media/about-icon5.png": "/static/media/about-icon5.bc7c6427801dbb6eadb0.png",
     "static/media/head-icon.png": "/static/media/head-icon.7eca1aa2765af40c9082.png",
-    "static/media/metamask.svg": "/static/media/metamask.01d70a9d07397cd65509701277074a31.svg",
-    "static/media/Ethereum-min.svg": "/static/media/Ethereum-min.2783da626d711d0aa6ed645a13ab1c1f.svg",
-    "static/media/wallet-connect.svg": "/static/media/wallet-connect.de9755841b184e3507b0d1752429eebd.svg",
+    "static/media/PingFang-SC-Regular.ttf": "/static/media/PingFang-SC-Regular.be2c8049a0eb3f8a001b.ttf",
+    "static/media/metamask.svg": "/static/media/metamask.b5c58db0f2708dd4b7377e30f230e185.svg",
+    "static/media/Ethereum-min.svg": "/static/media/Ethereum-min.3438deeab569615597420a8302bf2b7f.svg",
+    "static/media/wallet-connect.svg": "/static/media/wallet-connect.f0a685c2cff676a39f0802de7e3b9b7d.svg",
     "index.html": "/index.html",
-    "static/media/ETH.svg": "/static/media/ETH.a7bd4f1e393bb0298bc80dcee6aa4274.svg",
-    "main.937e24e9.css.map": "/static/css/main.937e24e9.css.map",
-    "main.048d22f3.js.map": "/static/js/main.048d22f3.js.map",
+    "static/media/ETH.svg": "/static/media/ETH.b34e308ad7da27117a1cec7b4764d31c.svg",
+    "main.3431d6a8.css.map": "/static/css/main.3431d6a8.css.map",
+    "main.67d471c3.js.map": "/static/js/main.67d471c3.js.map",
     "787.99b72ff2.chunk.js.map": "/static/js/787.99b72ff2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.937e24e9.css",
-    "static/js/main.048d22f3.js"
+    "static/css/main.3431d6a8.css",
+    "static/js/main.67d471c3.js"
   ]
 }

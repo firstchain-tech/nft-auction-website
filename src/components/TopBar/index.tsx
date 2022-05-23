@@ -3,7 +3,7 @@ import { TopBarWrapper, StyledNavLink } from './styled'
 import { Col, Image, Button } from 'antd'
 import LOGO from '@/assets/logo.png'
 import ConnectWallet from '@/components/ConnectWallet'
-import { Adapth5 } from '@/utils'
+import { AdaptFontSize } from '@/utils'
 import { useWindowSizeHooks } from '@/hooks/useWindowSizeHooks'
 import { useTranslation } from 'react-i18next'
 import { GiftOutlined } from '@ant-design/icons'
@@ -38,15 +38,15 @@ export default memo(function TopBarPages(params: Type) {
         <StyledNavLink to="/home#reward" isActive={oddEvent}>
           <Button
             ghost
-            shape={windowSize.innerWidth >= Adapth5 ? 'default' : 'circle'}
-            className={windowSize.innerWidth >= Adapth5 ? 'reward-drop-btn' : 'reward-drop-btn-h5'}
+            shape={windowSize.innerWidth >= AdaptFontSize ? 'default' : 'circle'}
+            className={windowSize.innerWidth >= AdaptFontSize ? 'reward-drop-btn' : 'reward-drop-btn-h5'}
             icon={<GiftOutlined />}
           >
-            {windowSize.innerWidth >= Adapth5 ? t('home.reward.topbar.btn') : ''}
+            {windowSize.innerWidth >= AdaptFontSize ? t('home.reward.topbar.btn') : ''}
           </Button>
         </StyledNavLink>
 
-        {!isH5 && <ConnectWallet status='topbar' />}
+        {!isH5 && <ConnectWallet status="topbar" />}
       </Col>
     </TopBarWrapper>
   )

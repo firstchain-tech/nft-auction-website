@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import TIME_ICON1_IMG from '@/assets/time-icon1.png'
 import TIME_ICON2_IMG from '@/assets/time-icon2.png'
+import BigNumber from 'bignumber.js'
 
 const AuctionTime = styled.div<{ active: boolean }>`
   width: 28.44rem;
@@ -9,9 +10,11 @@ const AuctionTime = styled.div<{ active: boolean }>`
   background: ${({ active }) => (active ? `url(${TIME_ICON2_IMG}) no-repeat` : `url(${TIME_ICON1_IMG}) no-repeat`)};
   background-size: 100% 100%;
   position: relative;
-  margin:0  0 2.5rem 0;
+  margin-bottom: 3.75rem;
   span {
+    width: 6.92rem;
     font-size: 4.38rem;
+    text-align: center;
     font-family: 'DIN-Alternate-Bold';
     font-weight: bold;
     color: ${(props) => props.theme.black2};
@@ -19,14 +22,14 @@ const AuctionTime = styled.div<{ active: boolean }>`
     position: absolute;
     top: calc(33% - 2.19rem);
     &:nth-child(1) {
-      left: 0.31rem;
+      left: 0;
     }
     &:nth-child(2) {
-      left: calc(50% - 2.19rem + 0.3rem);
+      left: calc(50% - 3.55rem);
     }
     &:nth-child(3) {
       left: auto;
-      right: 1.31rem;
+      right: 0.06rem;
     }
   }
   ${(props) =>
@@ -37,15 +40,12 @@ const AuctionTime = styled.div<{ active: boolean }>`
         margin-bottom: 2.88rem;
         span {
           font-size: 3.5rem;
-          &:nth-child(1) {
-            left: 0.11rem;
-          }
+          width: calc(6.89rem * 0.8);
           &:nth-child(2) {
-            left: calc(50% - 2.19rem + 0.3rem);
+            left: calc(50% - 2.756rem);
           }
           &:nth-child(3) {
             left: auto;
-            right: 1.06rem;
           }
         }
       `,
@@ -55,43 +55,53 @@ const AuctionTime = styled.div<{ active: boolean }>`
 interface IProps {
   timeStamp: any
   returnClick: () => void
+  returnClickIsData: () => void
 }
 
 const CountDown = (props: IProps) => {
-  const { timeStamp, returnClick } = props
+  const { timeStamp, returnClick, returnClickIsData } = props
   const intervalRef = useRef<any>(null)
 
-  const now: any = Math.round(new Date().getTime() / 1000).toString() //获取当前时间
-  const end: any = timeStamp //设置截止时间
+  const now: any = Math.round(new Date().getTime() / 1000).toString()
+  const end: any = timeStamp
 
-  const [leftTime, setLeftTime] = useState(end - now) //时间间隔
-  const [h, setHours] = useState<any>('') //小时
-  const [m, setMinutes] = useState<any>('') //分钟
-  const [s, setSeconds] = useState<any>('') //秒
+  const [leftTime, setLeftTime] = useState(end - now)
+  const [h, setHours] = useState<any>('')
+  const [m, setMinutes] = useState<any>('')
+  const [s, setSeconds] = useState<any>('')
 
   useEffect(() => {
-    if (leftTime === 0) returnClick()
+    setLeftTime(() => {
+      let new_now: any = Math.round(new Date().getTime() / 1000).toString()
+      let timeStampnumber = new BigNumber(timeStamp).minus(new_now)
+      console.log('timeStampnumber', Number(timeStampnumber))
+      return Number(timeStampnumber)
+    })
+  }, [timeStamp])
+
+  useEffect(() => {
+    if (leftTime === 0) {
+      returnClickIsData()
+      returnClick()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [leftTime])
 
   useEffect(() => {
     if (leftTime > 0) {
       intervalRef.current = setInterval(() => {
-        const newNow: any = Math.round(new Date().getTime() / 1000).toString() // 重新获取当前时间
+        const newNow: any = Math.round(new Date().getTime() / 1000).toString()
 
         let newLeftTime = timeStamp - newNow
-        setLeftTime(() => newLeftTime) //计算新的时间间隔数值
+        setLeftTime(() => newLeftTime)
 
-        let hours =
-          Math.floor((newLeftTime / 60 / 60)) < 10
-            ? `0${Math.floor((newLeftTime / 60 / 60))}`
-            : Math.floor((newLeftTime / 60 / 60))
+        let hours = Math.floor(newLeftTime / 60 / 60) < 10 ? `0${Math.floor(newLeftTime / 60 / 60)}` : Math.floor(newLeftTime / 60 / 60)
         let minutes =
           Math.floor((newLeftTime / 60) % 60) < 10 ? `0${Math.floor((newLeftTime / 60) % 60)}` : Math.floor((newLeftTime / 60) % 60)
         let seconds = Math.floor(newLeftTime % 60) < 10 ? `0${Math.floor(newLeftTime % 60)}` : Math.floor(newLeftTime % 60)
-        setHours(() => hours) //函数写法 设置小时
-        setMinutes(() => minutes) //函数写法 设置分钟
-        setSeconds(() => seconds) //函数写法保证值在setInterval里更新，避免useEffect的bug
+        setHours(() => hours)
+        setMinutes(() => minutes)
+        setSeconds(() => seconds)
       }, 1000)
     } else {
       setLeftTime(0)
@@ -102,19 +112,19 @@ const CountDown = (props: IProps) => {
     }
     return () => clearInterval(intervalRef.current)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) //不传依赖
+  }, [leftTime])
 
   return (
     <>
       {leftTime <= 0 && (
-        <AuctionTime active={leftTime < 60}>
+        <AuctionTime active={leftTime < 600}>
           <span>00</span>
           <span>00</span>
           <span>00</span>
         </AuctionTime>
       )}
       {leftTime > 0 && (
-        <AuctionTime active={leftTime < 60}>
+        <AuctionTime active={leftTime < 600}>
           <span>{h}</span>
           <span>{m}</span>
           <span>{s}</span>

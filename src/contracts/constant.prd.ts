@@ -47,6 +47,7 @@ export const useConstant = {
     CHAIN_ID: 1,
     RPC_URL: 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
     Auction_ADDRESS: '',
+    USDT_ADDRESS: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
     apiUrl: '',
     apiKey: '',
   },

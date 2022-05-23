@@ -1,23 +1,22 @@
 import styled, { css } from 'styled-components'
 
-export const ComLayout = styled.div`
-  padding: 0 22.5rem 0;
-  @media (max-width: 1700px) {
-    padding: 0 9rem 0;
-  }
-  @media (max-width: 1500px) {
-    padding: 0 6rem 0;
-  }
-  @media (max-width: 1400px) {
-    padding: 0 3.5rem 0;
-  }
-  @media (max-width: 1300px) {
-    padding: 0 2rem 0;
-  }
-  ${(props) =>
-    props.theme.mediaWidth.screenLg(
-      () => css`
-        padding: 0 2.5rem 0;
-      `,
-    )}
+export const NoDataAuctionWrapper = styled.div`
+  min-height: calc(100vh - 17.88rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const webLayoutAdaptationMax = css`
+  max-width: min(75rem, 120rem - 45rem);
+  margin: 0 auto;
+`
+
+export const webLayoutAdaptation = css`
+  max-width: min(62.5%, 100% - 37.5%);
+  margin: 0 auto;
+`
+
+export const h5LayoutAdaptation = css`
+  max-width: min(96.3%, 100% - 6.4%);
+  margin: 0 auto;
 `
