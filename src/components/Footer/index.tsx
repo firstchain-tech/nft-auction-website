@@ -55,9 +55,9 @@ export default memo(function FooterPages() {
         </Col>
         <Col span={12}>
           <FooterIcon>
-            <Image src={FOOTER_1} className="footer-icons" preview={false} />
-            <Image src={FOOTER_2} className="footer-icons" preview={false} />
-            <Image src={FOOTER_3} className="footer-icons" preview={false} />
+            <a href="https://twitter.com/TheHuobiNFT" target="_blank"><Image src={FOOTER_1} className="footer-icons" preview={false} /></a>
+            <a href="https://discord.gg/8S6H6fgKk7" target="_blank"><Image src={FOOTER_2} className="footer-icons" preview={false} /></a>
+            <a href="https://t.me/Huobi_NFT" target="_blank"><Image src={FOOTER_3} className="footer-icons" preview={false} /></a>
           </FooterIcon>
         </Col>
       </Row>

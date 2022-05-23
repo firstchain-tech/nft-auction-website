@@ -161,7 +161,8 @@ export const useHomeHooks = (props: Type) => {
         let obj: AuctionListType = {
           ...item,
           iamge: axiosData.imageFiles || axiosData.image || AUCTION_DEFAULT_IMAGE,
-          name: axiosData.name || `McGrady Moment #${item.tokenId}`,
+          // name: axiosData.name || `McGrady Moment #${item.tokenId}`,
+          name: axiosData.name || `McGrady Moment`, // update by devon
           key: i.toString(),
           startTime,
           endTime,
@@ -372,7 +373,8 @@ export const useHomeHooks = (props: Type) => {
         let obj: AuctionListType = {
           ...item,
           iamge: axiosData.imageFiles || axiosData.image || AUCTION_DEFAULT_IMAGE,
-          name: axiosData.name || `McGrady Moment #${item.tokenId}`,
+          // name: axiosData.name || `McGrady Moment #${item.tokenId}`,
+          name: axiosData.name || `McGrady Moment`, // update by devon
           key: i.toString(),
           startTime,
           endTime,
