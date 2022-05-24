@@ -39,7 +39,7 @@ export class ConstantInit {
   }
 
   toWeiFromWei = (number: any) => {
-    let data = this.web3.utils.fromWei(number, 'ether')
+    let data = this.web3.utils.fromWei(number, 'mwei')
     return Number(data).toFixed(2)
   }
 }

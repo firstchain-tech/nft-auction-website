@@ -15,6 +15,8 @@ import {
   HomeReward,
   RewardTitle,
   CollectRewardsDiv,
+  HomePartners,PartnersContent,
+  PartnersTitle,
   HomeMaxBgColor1,
   HomeMaxBgColor2,
   HomeAboutH5,
@@ -44,6 +46,7 @@ import { getWinnerAwardRequest } from '@/api'
 import { ResponseCode } from '@/contracts/init'
 import { roadmapList } from '@/common/init'
 import RoadmapModal from '@/components/RoadmapModal'
+import HOME_PARTNERS_ICON from '@/assets/home-partners-icon.png'
 
 const ABOUT_ICON_INIT = [ABOUT_ICON1, ABOUT_ICON2, ABOUT_ICON3, ABOUT_ICON4, ABOUT_ICON5, ABOUT_ICON6, ABOUT_ICON7, ABOUT_ICON8]
 
@@ -224,6 +227,12 @@ export default memo(function HomePages(pages: any) {
             )}
             {!loading && auctionList.length === 0 && <div className="home-auction-loading"></div>}
           </HomeAuction>
+          <HomePartners>
+            <PartnersTitle>Partners</PartnersTitle>
+            <PartnersContent>
+                <Image src={HOME_PARTNERS_ICON} preview={false} width="100%" height="auto" />
+            </PartnersContent>
+          </HomePartners>
           {/* <HomeReward>
             <h2 className="h22" id="reward">
               {''}

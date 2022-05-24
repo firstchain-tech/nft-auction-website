@@ -435,3 +435,54 @@ export const HomeListTop = styled.div`
   top: calc(-10.63rem - 8.75rem);
   margin-bottom: -10.63rem;
 `
+
+export const HomePartners = styled.div`
+  ${webLayoutAdaptation}
+  position: relative;
+  z-index: 2;
+  ${(props) =>
+    props.theme.mediaWidth.screenMd(
+      () => css`
+        ${h5LayoutAdaptation}
+        position: relative;
+        z-index: 2;
+      `,
+    )}
+  @media(min-width: 1920px) {
+    ${webLayoutAdaptationMax}
+    position: relative;
+    z-index: 2;
+  }
+`
+
+export const PartnersTitle = styled.div`
+  font-size: 4.38rem;
+  font-family: 'Avenir-Bold', 'Avenir';
+  font-weight: 900;
+  color: ${(props) => props.theme.black2};
+  line-height: 6rem;
+  z-index: 2;
+  position: relative;
+  text-align: center;
+  margin-top: 7rem;
+  margin-bottom: 2.81rem;
+  ${(props) =>
+    props.theme.mediaWidth.screenMd(
+      () => css`
+        font-size: 3.13rem;
+      `,
+    )}
+`
+
+export const PartnersContent = styled.div`
+  background: #ffffff;
+  box-shadow: 0rem 1.94rem 1.88rem 0rem rgb(146 159 198 / 10%);
+  border-radius: 1.88rem;
+  padding: 3.75rem 6rem;
+  ${(props) =>
+    props.theme.mediaWidth.screenMd(
+      () => css`
+        padding: 3.75rem 1.5rem;
+      `,
+    )}
+`
