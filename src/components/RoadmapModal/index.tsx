@@ -7,10 +7,11 @@ import { Adapth5 } from '@/utils'
 
 interface Type {
   details: RoadmapListType
+  num: number
 }
 
 export default memo(function RoadmapModalPage(props: Type) {
-  const { details } = props
+  const { details, num } = props
   const { t } = useTranslation()
   const { windowSize } = useWindowSizeHooks()
 
@@ -36,7 +37,7 @@ export default memo(function RoadmapModalPage(props: Type) {
       </RoadmapModalTitle>
       <RoadmapModalContent>
         {details.content.map((item, i) => (
-          <li key={i}>{item}</li>
+          <li key={i} style={{fontWeight: (i === 0 && num === 0) ? 'bold':'400'}}>{item}</li>
         ))}
       </RoadmapModalContent>
     </RoadmapModalWrapper>

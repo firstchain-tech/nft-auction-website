@@ -199,7 +199,7 @@ export default memo(function HomePages(pages: any) {
               </h2>
               <h4>{t('home.about.list3.title')}</h4>
               {roadmapList.map((item, i) => (
-                <RoadmapModal details={item} key={i} />
+                <RoadmapModal details={item} key={i} num={i} />
               ))}
               <p style={{ marginTop: '3.69rem' }}>{t('home.about.list3.p1')}</p>
               <p>{t('home.about.list3.p2')}</p>

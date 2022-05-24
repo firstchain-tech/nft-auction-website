@@ -6,7 +6,7 @@ export const roadmapList: RoadmapListType[] = [
     amount: '30,000',
     unit: 'USDT',
     content: [
-      'All participants will receive a themed NFT co-designed by Huobi NFT and McGrady.',
+      'All participants will receive a themed NFT co-designed by Huobi NFT and McGrady.We will airdrop the NFT to the address that you connected with the auction page. The NFT will be minted on Polygon.',
       'The auction winner will receive the metaverse model of the venue in which the classic moment occurred.',
       'More mystery rewards will be distributed as a bonus, such as Huobi NFT DV1 membership and free whitelist opportunities for future NFT projects.',
     ],
