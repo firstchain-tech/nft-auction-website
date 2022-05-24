@@ -15,8 +15,11 @@ export interface ConnectorNamesType {
   src: 'Injected' | 'WalletConnect' | 'NetWork'
 }
 
+
+const infuraId = process.env.REACT_APP_INFURAID
+
 export const RPC_URLS: { [chainId: number]: string } = {
-  42: 'https://kovan.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+  42: `https://kovan.infura.io/v3/${infuraId}`,
 }
 
 export const injected = new InjectedConnector({ supportedChainIds: [42] })
@@ -26,7 +29,7 @@ export const walletconnect = (rpc: any, chainId: number) =>
     rpc,
     chainId,
     qrcode: true,
-    infuraId: '9aa3d95b3bc440fa88ea12eaa4456161',
+    infuraId,
   })
 
 export const network = new NetworkConnector({
@@ -45,7 +48,7 @@ export const defaultChainId = 42
 export const useConstant = {
   42: {
     CHAIN_ID: 42,
-    RPC_URL: 'https://kovan.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+    RPC_URL: `https://kovan.infura.io/v3/${infuraId}`,
     Auction_ADDRESS: '0xb4BF5Ff9D132512B9bA2AFcE78D61Cc4cB2CaB66',
     USDT_ADDRESS: '0x329DfE37F866367f0652786848885F3AFC90cCC6',
     apiUrl: '',

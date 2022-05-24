@@ -16,7 +16,7 @@ const constants: any = {
 export interface ConnectorNamesType {
   src: 'Injected' | 'WalletConnect' | 'NetWork'
 }
-
+console.log('process.env',process.env)
 const { REACT_APP_ENV = 'prd' } = process.env
 console.log('REACT_APP_ENV', REACT_APP_ENV)
 export const { useConstant, RPC_URLS, injected, walletconnect, network, connectorsByName, defaultChainId, netWorks } =
