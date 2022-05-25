@@ -55,7 +55,7 @@ export default memo(function AuctionModalPage(params: Type) {
               }}
             >
               <span>
-                <span className="span">{t('home.auction.tims')}</span>
+                <span className="span">{t('home.auction.tims')}img</span>
                 {details.startTime} - {details.endTime}
               </span>
             </AuctionTimes>
@@ -68,7 +68,7 @@ export default memo(function AuctionModalPage(params: Type) {
               }}
             >
               <span>
-                <span className="span">{t('home.auction.tims')}</span>
+                <span className="span">{t('home.auction.tims')}ed</span>
                 {details.startTime} - {details.endTime}
               </span>
             </AuctionTimes>
