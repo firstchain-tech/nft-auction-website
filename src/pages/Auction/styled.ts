@@ -31,6 +31,12 @@ export const AuctionWrapper = styled.div`
     font-weight: 600;
     line-height: 2.13rem;
     color: ${(props) => props.theme.themeColor};
+    ${(props) =>
+      props.theme.mediaWidth.screenMd(
+        () => css`
+         right: 1.5rem;;
+        `,
+      )}
   }
   .table_box_big {
     overflow-x: scroll;

@@ -48,7 +48,7 @@ export const useConstant = {
   42: {
     CHAIN_ID: 42,
     RPC_URL: `https://kovan.infura.io/v3/${infuraId}`,
-    Auction_ADDRESS: '0x28E7f16737cDEF3896a1b11eC2d3F9C0CeDD487A',
+    Auction_ADDRESS: '0x2280FfF764216c42028ecCf634919bAe42e1e663',
     USDT_ADDRESS: '0x329DfE37F866367f0652786848885F3AFC90cCC6',
     apiUrl: '',
     apiKey: '',

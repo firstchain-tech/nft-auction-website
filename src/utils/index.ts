@@ -110,3 +110,17 @@ export const formatMsgTime = (timespan: any) => {
   }
   return result
 }
+
+
+export const isJson = (str: any) => {
+  if (typeof str == 'string') {
+    try {
+      // eslint-disable-next-line
+      let obj = JSON.parse(str)
+      return true
+    } catch (e) {
+      return false
+    }
+  }
+  return false
+}

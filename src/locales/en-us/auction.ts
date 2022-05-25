@@ -43,5 +43,7 @@ const auction = {
   'auction.message.tips4': 'Make Offer Success',
   'auction.message.tips5': 'You are currently the highest bidder',
   'auction.message.receies.tips': 'Cannot be repeated',
+  'auction.modal.error.tips': 'Last bid: {{price}} USDT failed',
+  'auction.message.tipsP': 'You have already bid, please wait for feedback'
 }
 export default auction
