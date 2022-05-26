@@ -2,13 +2,13 @@ import { memo } from 'react'
 import type { AuctionListType } from '@/common/data.d'
 import { Image, Divider } from 'antd'
 import { AuctionModalWrapper, AuctionModalContent, AuctionTile, AuctionH2, AuctionEdition, AuctionTimes } from './styled'
-// import useDataHooks from '@/hooks/useDataHooks'
-// import type { ConstantInitTypes } from '@/contracts/constantInit'
 import { useTranslation } from 'react-i18next'
 import { useWindowSizeHooks } from '@/hooks/useWindowSizeHooks'
 import { Adapth5 } from '@/utils'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
+import useDataHooks from '@/hooks/useDataHooks'
+import type { ConstantInitTypes } from '@/contracts/constantInit'
 
 interface Type {
   details: AuctionListType
@@ -20,8 +20,9 @@ export default memo(function AuctionModalPage(params: Type) {
   const { windowSize } = useWindowSizeHooks()
   const { t } = useTranslation()
 
-  // const dataInit: ConstantInitTypes = useDataHooks()
-  // const {} = dataInit
+  const dataInit: ConstantInitTypes = useDataHooks()
+  const { toWeiFromWei } = dataInit
+
   const CURRENT_TIMESTAMP = moment().format('X')
 
   return (
@@ -33,7 +34,7 @@ export default memo(function AuctionModalPage(params: Type) {
           <AuctionTile>{details.name}</AuctionTile>
           <h4>{t('home.auction.h4')}</h4>
           <AuctionH2>
-            {details.totalPrice}&nbsp;<span>{t('home.auction.h2')}</span>
+            {toWeiFromWei(details.maxPrice)}&nbsp;<span>{t('home.auction.h2')}</span>
           </AuctionH2>
           <AuctionEdition>
             {t('home.auction.edition')}:&nbsp;{details.amount}

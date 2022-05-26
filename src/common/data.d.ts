@@ -39,6 +39,7 @@ export interface AuctionListType {
   totalPrice: string
   numberKey: string
   url: string
+  maxPrice: string
 }
 
 /** numberKey -》 blocakNumbr+Tokenid+acount */

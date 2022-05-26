@@ -136,6 +136,7 @@ export const useHomeHooks = (props: Type) => {
             let endTime = moment(Number(finishEnd)).format('YYYY/MM/DD HH:mm:ss')
             item.endTime = endTime
           }
+          if(obj) item.maxPrice = obj.price
         })
         console.log('datalist111', LOCAL_DATA)
         setAuctionList(LOCAL_DATA)
@@ -169,6 +170,7 @@ export const useHomeHooks = (props: Type) => {
           endTime,
           totalPrice: Number(bigNumberPrice).toFixed(2),
           numberKey: `${item.blockNumber}${item.tokenId}${item.amount}`,
+          maxPrice: item.price
         }
         DATA_LIST.push(obj)
       }
@@ -179,7 +181,8 @@ export const useHomeHooks = (props: Type) => {
           let finishEnd = new BigNumber(obj.finish).times(1000)
           let endTime = moment(Number(finishEnd)).format('YYYY/MM/DD HH:mm:ss')
           item.endTime = endTime
-        }
+        } 
+        if(obj) item.maxPrice = obj.price
       })
       if (DATA_LIST.length > 0) {
         let sizeObj = getLocalStorageSize(JSON.stringify(DATA_LIST))
@@ -349,6 +352,7 @@ export const useHomeHooks = (props: Type) => {
             let endTime = moment(Number(finishEnd)).format('YYYY/MM/DD HH:mm:ss')
             item.endTime = endTime
           }
+          if(obj) item.maxPrice = obj.price
         })
         console.log('datalist111', LOCAL_DATA)
         setAuctionList(LOCAL_DATA)
@@ -382,6 +386,7 @@ export const useHomeHooks = (props: Type) => {
           endTime,
           totalPrice: Number(bigNumberPrice).toFixed(2),
           numberKey: `${item.blockNumber}${item.tokenId}${item.amount}`,
+          maxPrice: item.price
         }
         DATA_LIST.push(obj)
       }
@@ -393,6 +398,7 @@ export const useHomeHooks = (props: Type) => {
           let endTime = moment(Number(finishEnd)).format('YYYY/MM/DD HH:mm:ss')
           item.endTime = endTime
         }
+        if(obj) item.maxPrice = obj.price
       })
       if (DATA_LIST.length > 0) {
         let sizeObj = getLocalStorageSize(JSON.stringify(DATA_LIST))
