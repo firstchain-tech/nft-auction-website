@@ -410,7 +410,8 @@ export default memo(function AuctionPage(props: any) {
             {(type === '.jpg' || type === '.png' || type === '.gif' || type === '.svg') && (
               <Image className="auction-image" src={key.url || AUCTION_DEFAULT_IMAGE2} preview={false} />
             )}
-            {(type === '.mp4' || type === '.webm') && <AuctionVideo src={key.url} controls loop autoPlay></AuctionVideo>}
+            {(type === '.mp4' || type === '.webm') && <AuctionVideo src={key.url} controls loop autoPlay
+              poster={key.iamge || AUCTION_DEFAULT_IMAGE2}></AuctionVideo>}
             <h1>{!currentStartTime ? t('auction.start.title') : t('auction.end.title')}</h1>
             <CountDown
               timeStamp={moment(!currentStartTime ? key.startTime : key.endTime).format('X')}
