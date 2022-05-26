@@ -15,7 +15,8 @@ import {
   HomeReward,
   RewardTitle,
   CollectRewardsDiv,
-  HomePartners,PartnersContent,
+  HomePartners,
+  PartnersContent,
   PartnersTitle,
   HomeMaxBgColor1,
   HomeMaxBgColor2,
@@ -230,7 +231,7 @@ export default memo(function HomePages(pages: any) {
           <HomePartners>
             <PartnersTitle>Partners</PartnersTitle>
             <PartnersContent>
-                <Image src={HOME_PARTNERS_ICON} preview={false} width="100%" height="auto" />
+              <Image src={HOME_PARTNERS_ICON} preview={false} width="100%" height="auto" />
             </PartnersContent>
           </HomePartners>
           {/* <HomeReward>

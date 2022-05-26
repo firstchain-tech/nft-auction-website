@@ -67,6 +67,15 @@ const getContractsUriDataTwo721 = async (constant: any, web3: Web3, constantAddr
   let length = uri.indexOf(':')
   let str = uri.substring(0, length)
   if (str === 'http' || str === 'https') return await GetIPFSJson(uri)
+  if (str === 'ipfs') {
+    let ipfsUrl = uri.replace('ipfs://', 'https://ipfs.io/ipfs/')
+    let data: any = await GetIPFSJson(ipfsUrl)
+    if (data.image && data.image.substring(0, data.image.indexOf(':')) === 'ipfs')
+      data.image = data.image.replace('ipfs://', 'https://ipfs.io/ipfs/')
+    if (data.animation_url && data.animation_url.substring(0, data.animation_url.indexOf(':')) === 'ipfs')
+      data.animation_url = data.animation_url.replace('ipfs://', 'https://ipfs.io/ipfs/')
+    return await data
+  }
   return await {}
 }
 
@@ -79,7 +88,10 @@ const getContractsUriDataTwo1155 = async (constant: any, web3: Web3, constantAdd
   let length = uri.indexOf(':')
   let str = uri.substring(0, length)
   if (str === 'http' || str === 'https') return await GetIPFSJson(uri)
-
+  if (str === 'ipfs') {
+    let ipfsUrl = uri.replace('ipfs://', 'https://ipfs.io/ipfs/')
+    return await GetIPFSJson(ipfsUrl)
+  }
   return await {}
 }
 

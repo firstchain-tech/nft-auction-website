@@ -15,7 +15,6 @@ export interface ConnectorNamesType {
   src: 'Injected' | 'WalletConnect' | 'NetWork'
 }
 
-
 const infuraId = process.env.REACT_APP_INFURAID
 
 export const RPC_URLS: { [chainId: number]: string } = {

@@ -111,7 +111,6 @@ export const formatMsgTime = (timespan: any) => {
   return result
 }
 
-
 export const isJson = (str: any) => {
   if (typeof str == 'string') {
     try {

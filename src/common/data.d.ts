@@ -38,6 +38,7 @@ export interface AuctionListType {
   endTime: string
   totalPrice: string
   numberKey: string
+  url: string
 }
 
 /** numberKey -》 blocakNumbr+Tokenid+acount */

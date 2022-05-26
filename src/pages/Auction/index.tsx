@@ -14,6 +14,7 @@ import {
   ModalContent,
   ModalLable,
   ModalTitles,
+  AuctionVideo,
 } from './styled'
 import { Web3Provider } from '@ethersproject/providers'
 import { useWeb3React } from '@web3-react/core'
@@ -37,27 +38,27 @@ import { FormInstance } from 'antd/es/form'
 import ConnectWallet from '@/components/ConnectWallet'
 import BigNumber from 'bignumber.js'
 import { getAuctionListRedux, getAuctionListReduxApi } from '@/Import/reduxDataLocal'
-import { isJson,formatMsgTime } from '@/utils'
+import { isJson, formatMsgTime } from '@/utils'
 
 const CloseBase =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARFJREFUWEftl00KwjAQhb8iiEdx6anceB43nsqlRxFBkAErpVYzedPiIOkynZ+PN8lr2pH86ZLz0QCjE2oKNgWjCkTz/2oP7oArcAmqsgU2wNlTx6ugwe2BO3AMQBrcAVgBJw+kF7AvvAZuIqRUwwto05AaPMco59YAqpAynDWsBayFDMGpgF7IMFwEsAQ5C1wU8BOkrZuVRE78yyKVPTj217Fa9n4WuDkU7GGHkLameuXbx2UOBcejTgeYesRTpzXNIflmJT+3GQ+AJ6Z441IOSU3jmthJ2FpApaGSIxl1pJGc61VQbjCYm1TDC5j+ym9CpP5pKtrBUgHeES/Vv1i3ARYlKgQ0BZuCUQWi+en34APHLHApT7TexwAAAABJRU5ErkJggg=='
 
-interface LocalHashobjType{
+interface LocalHashobjType {
   from: string
   price: string
-  expiration:string
+  expiration: string
   floorDifference: string
   isTrue: boolean
-  status: 'success' | 'pending' |'error'
+  status: 'success' | 'pending' | 'error'
 }
 
 const InitLocalHashobj: LocalHashobjType = {
   from: '',
   price: '',
-  expiration:'',
+  expiration: '',
   floorDifference: '',
   isTrue: false,
-  status: 'success'
+  status: 'success',
 }
 
 export default memo(function AuctionPage(props: any) {
@@ -120,11 +121,13 @@ export default memo(function AuctionPage(props: any) {
 
   const { windowSize } = useWindowSizeHooks()
 
-  const [localStorageBidHash,setLocalStorageBidHash] = useState(() => {
-    let obj = localStorage.getItem(`${myAddress}_bid_info`) || ''
+  const [localStorageBidHash, setLocalStorageBidHash] = useState(() => {
+    let obj = localStorage.getItem(`${myAddress}_bid_info_${key.numberKey}`) || ''
     return obj
   })
   const [localHashobj, setLocalHashobj] = useState<LocalHashobjType>(InitLocalHashobj)
+
+  const [type, setType] = useState<string>('.png')
 
   useEffect(() => {
     let match = props.match
@@ -152,10 +155,14 @@ export default memo(function AuctionPage(props: any) {
 
   useEffect(() => {
     console.log('details', key)
+    if (key.url) {
+      let s = key.url.substr(key.url.lastIndexOf('.'))
+      setType(s)
+    }
   }, [key])
 
   useEffect(() => {
-    let obj = localStorage.getItem(`${myAddress}_bid_info`) || ''
+    let obj = localStorage.getItem(`${myAddress}_bid_info_${key.numberKey}`) || ''
     setLocalStorageBidHash(obj)
     setLocalHashobj(InitLocalHashobj)
     if (obj !== '') getLocalHashInfo(obj)
@@ -185,7 +192,7 @@ export default memo(function AuctionPage(props: any) {
       let obj = JSON.parse(info)
       if (obj.hash !== '') {
         let receipt = await web3.eth.getTransactionReceipt(obj.hash)
-        console.log('receipt',receipt)
+        console.log('receipt', receipt)
         if (receipt.status === false) {
           let timestamps = await (await web3.eth.getBlock(receipt.blockNumber)).timestamp
           let expiration: any = formatMsgTime(timestamps)
@@ -195,7 +202,7 @@ export default memo(function AuctionPage(props: any) {
             expiration,
             floorDifference: '--',
             isTrue: true,
-            status: 'error'
+            status: 'error',
           })
         } else {
           if (receipt.status === true) setLocalHashobj(InitLocalHashobj)
@@ -208,12 +215,11 @@ export default memo(function AuctionPage(props: any) {
               expiration,
               floorDifference: '--',
               isTrue: true,
-              status: 'pending'
+              status: 'pending',
             })
           }
         }
       }
-      
     }
   }
 
@@ -299,7 +305,7 @@ export default memo(function AuctionPage(props: any) {
         .on('transactionHash', function (hash: any) {
           console.log(hash)
           let timestamp = moment().valueOf()
-          localStorage.setItem(`${myAddress}_bid_info`, JSON.stringify({hash,price, myAddress,timestamp}))
+          localStorage.setItem(`${myAddress}_bid_info_${key.numberKey}`, JSON.stringify({ hash, price, myAddress, timestamp }))
         })
         .on('receipt', async (receipt: any) => {
           message.success({
@@ -401,7 +407,10 @@ export default memo(function AuctionPage(props: any) {
             </Link>
           </div>
           <AuctionInfo>
-            <Image className="auction-image" src={key.iamge || AUCTION_DEFAULT_IMAGE2} preview={false} />
+            {(type === '.jpg' || type === '.png' || type === '.gif' || type === '.svg') && (
+              <Image className="auction-image" src={key.url || AUCTION_DEFAULT_IMAGE2} preview={false} />
+            )}
+            {(type === '.mp4' || type === '.webm') && <AuctionVideo src={key.url} controls loop></AuctionVideo>}
             <h1>{!currentStartTime ? t('auction.start.title') : t('auction.end.title')}</h1>
             <CountDown
               timeStamp={moment(!currentStartTime ? key.startTime : key.endTime).format('X')}
@@ -476,6 +485,8 @@ export default memo(function AuctionPage(props: any) {
                         >
                           {t('auction.list.btn')}
                         </Button>
+                        <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p1')}</p>
+                        <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p2')}</p>
                       </AuctionBtn>
                     )}
                     {/* end, yes bids */}
@@ -584,10 +595,10 @@ export default memo(function AuctionPage(props: any) {
                 </Spin>
               )}
               {!active && !loading && (
-              <AuctionBtn>
-                <ConnectWallet />
-              </AuctionBtn>
-            )}
+                <AuctionBtn>
+                  <ConnectWallet />
+                </AuctionBtn>
+              )}
             </Spin>
           </AuctionInfo>
 
@@ -606,20 +617,26 @@ export default memo(function AuctionPage(props: any) {
                   </tr>
                 </thead>
                 <tbody>
-                {!loading && localHashobj.isTrue && localHashobj.from === myAddress && <tr style={{opacity: localHashobj.status === 'pending' ? 0.5: 1}}>
-                    <td>0</td>
-                    <td>{toWeiFromWei(localHashobj.price)}&nbsp;{t('auction.list.title2')}&nbsp;</td>
-                    <td>{localHashobj.floorDifference}</td>
-                    <td>{localHashobj.expiration}</td>
-                    <td className="theme">{localHashobj.from.substring(localHashobj.from.length - 6)}</td>
-                  </tr>}
+                  {!loading && localHashobj.isTrue && localHashobj.from === myAddress && (
+                    <tr style={{ opacity: localHashobj.status === 'pending' ? 0.5 : 1 }}>
+                      <td>0</td>
+                      <td>
+                        {toWeiFromWei(localHashobj.price)}&nbsp;{t('auction.list.title2')}&nbsp;
+                      </td>
+                      <td>{localHashobj.floorDifference}</td>
+                      <td>{localHashobj.expiration}</td>
+                      <td className="theme">{localHashobj.from.substring(localHashobj.from.length - 6)}</td>
+                    </tr>
+                  )}
                   {!loading &&
                     offersList.length > 0 &&
                     offersList.map((item, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>
-                          {toWeiFromWei(item.price)}&nbsp;{t('auction.list.title2')}&nbsp;
+                          <div className="span">
+                            {toWeiFromWei(item.price)}&nbsp;{t('auction.list.title2')}&nbsp;
+                          </div>
                           {item.isHight && (
                             <Tag style={{ textIndent: 0 }} className="table-hight" color="rgba(96, 35, 249, 0.1)">
                               {t('auction.offers.list.hgiht')}
@@ -650,18 +667,24 @@ export default memo(function AuctionPage(props: any) {
                   <div className="table_tbody_box">
                     <OffersTable>
                       <tbody>
-                        {localHashobj.isTrue && localHashobj.from === myAddress && <tr>
+                        {localHashobj.isTrue && localHashobj.from === myAddress && (
+                          <tr>
                             <td>0</td>
-                            <td>{toWeiFromWei(localHashobj.price)}&nbsp;{t('auction.list.title2')}&nbsp;</td>
+                            <td>
+                              {toWeiFromWei(localHashobj.price)}&nbsp;{t('auction.list.title2')}&nbsp;
+                            </td>
                             <td>{localHashobj.floorDifference}</td>
                             <td>{localHashobj.expiration}</td>
                             <td>{localHashobj.from.substring(localHashobj.from.length - 6)}</td>
-                          </tr>}
+                          </tr>
+                        )}
                         {offersList.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
                             <td>
-                              {toWeiFromWei(item.price)}&nbsp;{t('auction.list.title2')}&nbsp;
+                              <div className="span">
+                                {toWeiFromWei(item.price)}&nbsp;{t('auction.list.title2')}&nbsp;
+                              </div>
                               {item.isHight && (
                                 <Tag style={{ textIndent: 0 }} className="table-hight" color="rgba(96, 35, 249, 0.1)">
                                   {t('auction.offers.list.hgiht')}
@@ -724,12 +747,22 @@ export default memo(function AuctionPage(props: any) {
                       </span>
                     </ModalTitles>
                   </Spin>
-                  {localHashobj.status === 'error' && localHashobj.isTrue === true && localHashobj.from === myAddress && <p style={{color: '#F30000', opacity: 1}}>
-                   {t('auction.modal.error.tips',{price: toWeiFromWei(localHashobj.price)})}
-                  </p>}
-                  <p style={{paddingTop: (localHashobj.status === 'error' && localHashobj.isTrue === true && localHashobj.from === myAddress) ? '0': '1.94rem'}}>{t('auction.modal.form.p')}</p>
-                  <Button type="primary" htmlType="submit"
-                    className={loading ? 'submit-disabled-btn' : 'submit-btn'} disabled={loading}>
+                  {localHashobj.status === 'error' && localHashobj.isTrue === true && localHashobj.from === myAddress && (
+                    <p style={{ color: '#F30000', opacity: 1 }}>
+                      {t('auction.modal.error.tips', { price: toWeiFromWei(localHashobj.price) })}
+                    </p>
+                  )}
+                  <p
+                    style={{
+                      paddingTop:
+                        localHashobj.status === 'error' && localHashobj.isTrue === true && localHashobj.from === myAddress
+                          ? '0'
+                          : '1.94rem',
+                    }}
+                  >
+                    {t('auction.modal.form.p')}
+                  </p>
+                  <Button type="primary" htmlType="submit" className={loading ? 'submit-disabled-btn' : 'submit-btn'} disabled={loading}>
                     {t('auction.modal.form.btn')}
                   </Button>
                 </Form>

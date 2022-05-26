@@ -37,7 +37,9 @@ export default memo(function RoadmapModalPage(props: Type) {
       </RoadmapModalTitle>
       <RoadmapModalContent>
         {details.content.map((item, i) => (
-          <li key={i} style={{fontWeight: (i === 0 && num === 0) ? 'bold':'400'}}>{item}</li>
+          <li key={i} style={{ fontWeight: i === 0 && num === 0 ? 'bold' : '400' }}>
+            {item}
+          </li>
         ))}
       </RoadmapModalContent>
     </RoadmapModalWrapper>

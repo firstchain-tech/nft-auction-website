@@ -112,7 +112,7 @@ export const useAuctionHooks = (props: Type) => {
           ...element,
           expiration,
           key: i.toString(),
-          floorDifference: `${Number(floorDifference).toFixed(2)}% below`,
+          floorDifference: `${Number(floorDifference).toFixed(2)}% Higher`,
           isHight: false,
         }
         DATA_LIST.push(obj)
@@ -232,7 +232,7 @@ export const useAuctionHooks = (props: Type) => {
           ...element,
           expiration,
           key: i.toString(),
-          floorDifference: `${Number(floorDifference).toFixed(2)}% below`,
+          floorDifference: `${Number(floorDifference).toFixed(2)}% Higher`,
           isHight: false,
         }
         DATA_LIST.push(obj)

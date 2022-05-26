@@ -14,6 +14,8 @@ const auction = {
   'auction.list.title2': 'USDT',
   'auction.list.title3': 'Edition :',
   'auction.list.btn.p': 'Bid above current maximum price',
+  'auction.list.btn.p1': 'If you have any question,please contace us.',
+  'auction.list.btn.p2': 'Email:HuobiNFT@global-hgroup.com',
   'auction.list.btn': 'Make offer',
   'auction.offers.list.title': 'Offers List',
   'auction.offers.list.th1': 'Ranking',
@@ -44,6 +46,6 @@ const auction = {
   'auction.message.tips5': 'You are currently the highest bidder',
   'auction.message.receies.tips': 'Cannot be repeated',
   'auction.modal.error.tips': 'Last bid: {{price}} USDT failed',
-  'auction.message.tipsP': 'You have already bid, please wait for feedback'
+  'auction.message.tipsP': 'You have already bid, please wait for feedback',
 }
 export default auction
