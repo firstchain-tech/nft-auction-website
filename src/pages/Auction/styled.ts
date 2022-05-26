@@ -21,12 +21,12 @@ export const AuctionWrapper = styled.div`
     min-width: 7.06rem;
     height: 2.13rem;
     border-radius: 1.38rem;
-    position: absolute;
+    /* position: absolute;
     right: 2.5rem;
-    top: calc(50% - 1.065rem);
+    top: calc(50% - 1.065rem); */
     font-size: 1rem;
     text-indent: 0;
-    z-index: 3;
+    /* z-index: 3; */
     text-align: center;
     font-family: 'PingFang-SC-Semibold';
     font-weight: 600;
@@ -35,7 +35,7 @@ export const AuctionWrapper = styled.div`
     ${(props) =>
       props.theme.mediaWidth.screenMd(
         () => css`
-          right: 1.5rem; ;
+          /* right: 1.5rem; ; */
         `,
       )}
   }
@@ -422,9 +422,13 @@ export const OffersTables = styled.div`
         text-align: center;
       }
       &:nth-child(2) {
-        width: 28%;
+        width: 100%;
         text-align: start;
         text-indent: 1em;
+        display: flex;
+        height: 6.19rem;
+        align-items: center;
+        justify-content: flex-start;
       }
       &:nth-child(3) {
         width: 22%;
@@ -497,6 +501,10 @@ export const OffersTable = styled.table`
       }
       &:nth-child(2) {
         min-width: 20.38rem;
+        display: flex;
+        height: 6.19rem;
+        align-items: center;
+        justify-content: flex-start;
       }
       &:nth-child(5) {
         min-width: 10.38rem;

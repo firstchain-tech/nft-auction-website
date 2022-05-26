@@ -466,6 +466,8 @@ export default memo(function AuctionPage(props: any) {
                         <Button type="primary" disabled className="disabled-btn">
                           {t('auction.list.btn')}
                         </Button>
+                        <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p1')}</p>
+                        <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p2')}</p>
                       </AuctionBtn>
                     )}
                     {/* in progress */}
@@ -582,6 +584,8 @@ export default memo(function AuctionPage(props: any) {
                             )}
                           </>
                         )}
+                        <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p1')}</p>
+                        <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p2')}</p>
                       </AuctionBtn>
                     )}
                     {/* end, no bids */}
@@ -589,6 +593,8 @@ export default memo(function AuctionPage(props: any) {
                       <AuctionBtn>
                         <h2>{t('auction.btn.btn')}</h2>
                         <p className="sss">{t('auction.btn.p')}</p>
+                        <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p1')}</p>
+                        <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p2')}</p>
                       </AuctionBtn>
                     )}
                   </>
@@ -597,6 +603,8 @@ export default memo(function AuctionPage(props: any) {
               {!active && !loading && (
                 <AuctionBtn>
                   <ConnectWallet />
+                  <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p1')}</p>
+                  <p style={{ marginBottom: 0 }}>{t('auction.list.btn.p2')}</p>
                 </AuctionBtn>
               )}
             </Spin>
@@ -634,7 +642,7 @@ export default memo(function AuctionPage(props: any) {
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>
-                          <div className="span">
+                          <div className="span" style={{ width: item.isHight ? '50%' : '100%' }}>
                             {toWeiFromWei(item.price)}&nbsp;{t('auction.list.title2')}&nbsp;
                           </div>
                           {item.isHight && (
@@ -682,7 +690,7 @@ export default memo(function AuctionPage(props: any) {
                           <tr key={index}>
                             <td>{index + 1}</td>
                             <td>
-                              <div className="span">
+                              <div className="span" style={{ width: item.isHight ? '50%' : '100%' }}>
                                 {toWeiFromWei(item.price)}&nbsp;{t('auction.list.title2')}&nbsp;
                               </div>
                               {item.isHight && (
