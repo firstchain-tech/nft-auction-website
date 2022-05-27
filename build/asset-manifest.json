@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.52499681.css",
-    "main.js": "/static/js/main.31ee18a7.js",
+    "main.js": "/static/js/main.40b7f9eb.js",
     "static/js/787.99b72ff2.chunk.js": "/static/js/787.99b72ff2.chunk.js",
     "static/media/PingFang-SC-Semibold.ttf": "/static/media/PingFang-SC-Semibold.6d473fe239a1069c3515.ttf",
     "static/media/Avenir.ttc": "/static/media/Avenir.bd849aa48220dc5266c4.ttc",
@@ -30,11 +30,11 @@
     "index.html": "/index.html",
     "static/media/ETH.svg": "/static/media/ETH.b34e308ad7da27117a1cec7b4764d31c.svg",
     "main.52499681.css.map": "/static/css/main.52499681.css.map",
-    "main.31ee18a7.js.map": "/static/js/main.31ee18a7.js.map",
+    "main.40b7f9eb.js.map": "/static/js/main.40b7f9eb.js.map",
     "787.99b72ff2.chunk.js.map": "/static/js/787.99b72ff2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.52499681.css",
-    "static/js/main.31ee18a7.js"
+    "static/js/main.40b7f9eb.js"
   ]
 }
