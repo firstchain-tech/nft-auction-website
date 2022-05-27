@@ -152,7 +152,7 @@ export const useAuctionHooks = (props: Type) => {
           return b.blockNumber - a.blockNumber
         }),
       )
-      console.log('DATA_LIST', DATA_LIST)
+      // console.log('DATA_LIST', DATA_LIST)
       setLoading(false)
     } catch (error) {
       setLoading(false)

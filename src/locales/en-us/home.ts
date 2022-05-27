@@ -20,7 +20,8 @@ const home = {
   'home.about.list2.conent1': `"McGrady moment" NFT tells the story of famous basketball player, Tracy McGrady, who scored 13 points in 35 seconds and helped the Rockets magically beat the Spurs 81-80 at the last minute of a thrilling game between the Houston Rockets and the San Antonio Spurs on 9th December 2004. To this day, his excellent performance continues to inspire basketball players and fans. This NFT sale will be in English auction style. This NFT is the only copy of McGrady's great moment recreated in the Web3 world and will not be issued in the future.`,
   'home.about.list3.title': 'Roadmap of NFT Benefits',
   'home.about.modal.title': 'The auction price reaches ',
-  'home.about.list3.p3': 'All participants will receive a themed NFT co-designed by Huobi NFT and McGrady.We will airdrop the NFT to the address that you connected with the auction page. The NFT will be minted on Polygon.',
+  'home.about.list3.p3':
+    'All participants will receive a themed NFT co-designed by Huobi NFT and McGrady.We will airdrop the NFT to the address that you connected with the auction page. The NFT will be minted on Polygon.',
   'home.about.list3.p4': 'Opensea collection url :',
   'home.about.list3.p1': 'Please note that all rewards mentioned above will be accumulated.',
   'home.about.list3.p2':
