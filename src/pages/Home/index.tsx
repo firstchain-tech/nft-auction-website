@@ -199,6 +199,11 @@ export default memo(function HomePages(pages: any) {
                 {''}
               </h2>
               <h4>{t('home.about.list3.title')}</h4>
+              <p style={{ marginTop: '3.81rem' }}>{t('home.about.list3.p3')}</p>
+              <p>{t('home.about.list3.p4')}</p>
+              <a href="https://opensea.io/assets/matic/0x4b51fedcdd325fce33abccd45e8b96a684a7044d/1" target="_blank">
+                <p>https://opensea.io/assets/matic/0x4b51fedcdd325fce33abccd45e8b96a684a7044d/1</p>
+              </a>
               {roadmapList.map((item, i) => (
                 <RoadmapModal details={item} key={i} num={i} />
               ))}

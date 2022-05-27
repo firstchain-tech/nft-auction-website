@@ -11,7 +11,7 @@ interface Type {
 }
 
 export default memo(function RoadmapModalPage(props: Type) {
-  const { details, num } = props
+  const { details } = props
   const { t } = useTranslation()
   const { windowSize } = useWindowSizeHooks()
 
@@ -37,9 +37,7 @@ export default memo(function RoadmapModalPage(props: Type) {
       </RoadmapModalTitle>
       <RoadmapModalContent>
         {details.content.map((item, i) => (
-          <li key={i} style={{ fontWeight: i === 0 && num === 0 ? 'bold' : '400' }}>
-            {item}
-          </li>
+          <li key={i}>{item}</li>
         ))}
       </RoadmapModalContent>
     </RoadmapModalWrapper>
