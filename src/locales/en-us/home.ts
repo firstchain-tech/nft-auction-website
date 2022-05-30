@@ -28,6 +28,7 @@ const home = {
     'Huobi NFT reserves the right to the final terms and conditions this event. Check the following links to keep yourself updated with our latest progress.',
   'home.auction.title': 'Auction items',
   'home.auction.h4': 'Current Highest Bid',
+  'home.auction.h41': 'Final Price',
   'home.auction.h2': 'USDT',
   'home.auction.tims': 'Auction',
   'home.auction.edition': 'Edition',

@@ -11,6 +11,7 @@ const auction = {
   'auction.start.span1': 'Created by',
   'auction.start.span2': 'McGrady',
   'auction.list.title1': 'Current Highest Bid',
+  'auction.list.title11': 'Final Price',
   'auction.list.title2': 'USDT',
   'auction.list.title3': 'Edition :',
   'auction.list.btn.p': 'Bid above current maximum price',

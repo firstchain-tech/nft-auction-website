@@ -129,6 +129,8 @@ export default memo(function AuctionPage(props: any) {
 
   const [type, setType] = useState<string>('.png')
 
+  const CURRENT_TIMESTAMP = moment().format('X')
+
   useEffect(() => {
     let match = props.match
     if (match.params && match.params.id) {
@@ -434,7 +436,10 @@ export default memo(function AuctionPage(props: any) {
                 {!loading && (
                   <>
                     <div className="list">
-                      <h5>{t('auction.list.title1')}</h5>
+                      {CURRENT_TIMESTAMP < key.opening && <h5>{t('auction.list.title1')}</h5>}
+                      {CURRENT_TIMESTAMP >= key.opening && CURRENT_TIMESTAMP < key.finish && <h5>{t('auction.list.title1')}</h5>}
+                      {CURRENT_TIMESTAMP >= key.finish && <h5>{t('auction.list.title11')}</h5>}
+
                       <div className="span">
                         {isHightPrice ? isHightPrice : key.totalPrice} <span>{t('auction.list.title2')}</span>
                       </div>

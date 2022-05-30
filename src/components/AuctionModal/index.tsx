@@ -32,7 +32,9 @@ export default memo(function AuctionModalPage(params: Type) {
           <Image src={details.iamge} preview={false} className="auction-image"></Image>
           <div style={{ height: windowSize.innerWidth >= Adapth5 ? '22.25rem' : '13.31rem' }}></div>
           <AuctionTile>{details.name}</AuctionTile>
-          <h4>{t('home.auction.h4')}</h4>
+          {CURRENT_TIMESTAMP < details.opening && <h4>{t('home.auction.h4')}</h4>}
+          {CURRENT_TIMESTAMP >= details.opening && CURRENT_TIMESTAMP < details.finish && <h4>{t('home.auction.h4')}</h4>}
+          {CURRENT_TIMESTAMP >= details.finish && <h4>{t('home.auction.h41')}</h4>}
           <AuctionH2>
             {toWeiFromWei(details.maxPrice)}&nbsp;<span>{t('home.auction.h2')}</span>
           </AuctionH2>
@@ -69,7 +71,7 @@ export default memo(function AuctionModalPage(params: Type) {
               }}
             >
               <span>
-                <span className="span">{t('home.auction.tims')}ed</span>
+                <span className="span">{t('home.auction.tims')} End</span>
                 {details.startTime} - {details.endTime}
               </span>
             </AuctionTimes>
